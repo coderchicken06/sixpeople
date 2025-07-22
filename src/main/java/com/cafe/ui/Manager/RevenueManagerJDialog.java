@@ -12,6 +12,9 @@ import com.cafe.dao.impl.RevenueDAOImpl;
 import com.cafe.entity.Revenue;
 import com.cafe.util.TimeRange;
 import com.cafe.util.XDate;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 
 /**
  *
@@ -25,6 +28,18 @@ public class RevenueManagerJDialog extends javax.swing.JDialog implements Revenu
     public RevenueManagerJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+ URL url = getClass().getResource("/com/cafe/ui/Thêm tiêu đề.png");
+
+if (url != null) {
+    Image icon = Toolkit.getDefaultToolkit().getImage(url);
+    setIconImage(icon);
+} else {
+    System.err.println("Không tìm thấy ảnh: /com/cafe/ui/Logo2.png");
+    // Có thể dùng ảnh mặc định hoặc bỏ qua
+}
+
+
+
     }
 
     /**
