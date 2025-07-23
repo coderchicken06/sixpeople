@@ -258,7 +258,7 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
 
             },
             new String [] {
-                "", "Mã phiếu", "Đồ uống", "Đơn giá", "Giảm giá", "Số lượng", "Thành tiền"
+                "", "Mã phiếu", "Sản Phẩm", "Đơn giá", "Giảm giá", "Số lượng", "Thành tiền"
             }
         ) {
             Class[] types = new Class [] {
@@ -292,7 +292,7 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
 
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        btnRemove.setText("Xóa đồ uống");
+        btnRemove.setText("Xóa Sản Phẩm");
         btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoveActionPerformed(evt);
@@ -300,7 +300,7 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
         });
         jPanel2.add(btnRemove);
 
-        btnAdd.setText("Thêm đồ uống");
+        btnAdd.setText("Thêm Sản Phẩm");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -345,8 +345,8 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

@@ -119,7 +119,7 @@ public class DrinkJDialog extends javax.swing.JDialog implements DrinkController
         tblCategories = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Chọn đồ uống");
+        setTitle("Chọn sản phẩm");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -135,7 +135,7 @@ public class DrinkJDialog extends javax.swing.JDialog implements DrinkController
 
             },
             new String [] {
-                "Mã", "Tên đồ uống", "Đơn giá", "Giảm giá"
+                "Mã", "Tên sản phẩm", "Đơn giá", "Giảm giá"
             }
         ) {
             Class[] types = new Class [] {
@@ -175,7 +175,7 @@ public class DrinkJDialog extends javax.swing.JDialog implements DrinkController
 
             },
             new String [] {
-                "Loại đồ uống"
+                "Loại sản phẩm"
             }
         ) {
             Class[] types = new Class [] {
@@ -222,7 +222,7 @@ public class DrinkJDialog extends javax.swing.JDialog implements DrinkController
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addContainerGap())
         );

@@ -87,7 +87,7 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 190, 510));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 510));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 120, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

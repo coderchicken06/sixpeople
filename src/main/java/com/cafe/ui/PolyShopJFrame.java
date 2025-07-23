@@ -48,13 +48,14 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         btnChangePassword = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         btnRevenueManager = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\JAVA1_2\\thiet-ke-noi-that-shop-thoi-trang.jpg")); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 760, 510));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/thiet-ke-shop-52.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 760, 510));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -188,6 +189,9 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 510));
+
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -416,6 +420,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
     private javax.swing.JButton btnSales;
     private javax.swing.JButton btnUserManager;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
