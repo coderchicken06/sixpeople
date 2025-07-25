@@ -4,16 +4,16 @@
  */
 
 
-import com.cafe.entity.Category;
+import com.shop.entity.Category;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import com.cafe.util.XJdbc;
-import com.cafe.util.XQuery;
+import com.shop.util.XJdbc;
+import com.shop.util.XQuery;
 
 /**
  *
- * @author VAN TRONG
+ * @author 
  */
 public class Test {
 
