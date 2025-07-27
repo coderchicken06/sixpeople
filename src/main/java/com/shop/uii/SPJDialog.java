@@ -8,35 +8,37 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import lombok.Setter;
 import com.shop.dao.CategoryDAO;
-import com.shop.dao.DrinkDAO;
 import com.shop.dao.impl.BillDetailDAOImpl;
 import com.shop.dao.impl.CategoryDAOImpl;
-import com.shop.dao.impl.DrinkDAOImpl;
+import com.shop.dao.impl.SPDAOImpl;
 import com.shop.entity.Bill;
 import com.shop.entity.BillDetail;
 import com.shop.entity.Category;
-import com.shop.entity.Drink;
+import com.shop.entity.SP;
 import com.shop.util.XDialog;
+import javax.swing.ImageIcon;
+import com.shop.dao.SPDAO;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
-public class DrinkJDialog extends javax.swing.JDialog implements DrinkController {
+public class SPJDialog extends javax.swing.JDialog implements SPController {
 
     /**
      * Creates new form AddDrinkToBillJDialog
      */
-    public DrinkJDialog(java.awt.Frame parent, boolean modal) {
+    public SPJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     @Setter
     Bill bill;
 
     List<Category> categories = List.of();
-    List<Drink> drinks = List.of();
+    List<SP> drinks = List.of();
 
     @Override
     public void open() {
@@ -59,7 +61,7 @@ public class DrinkJDialog extends javax.swing.JDialog implements DrinkController
     public void fillDrinks() {
         Category category = categories.get(tblCategories.getSelectedRow());
 
-        DrinkDAO drinkDao = new DrinkDAOImpl();
+        SPDAO drinkDao = new SPDAOImpl();
         drinks = drinkDao.findByCategoryId(category.getId());
 
         DefaultTableModel model = (DefaultTableModel) tblDrinks.getModel();
@@ -77,7 +79,7 @@ public class DrinkJDialog extends javax.swing.JDialog implements DrinkController
 
     @Override
     public void addDrinkToBill() {
-        Drink drink = drinks.get(tblDrinks.getSelectedRow());
+        SP drink = drinks.get(tblDrinks.getSelectedRow());
 
         String input = XDialog.prompt("Số lượng?");
         if (input != null && input.trim().length() > 0) {
@@ -264,14 +266,30 @@ public class DrinkJDialog extends javax.swing.JDialog implements DrinkController
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DrinkJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DrinkJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DrinkJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DrinkJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -292,7 +310,7 @@ public class DrinkJDialog extends javax.swing.JDialog implements DrinkController
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DrinkJDialog dialog = new DrinkJDialog(new javax.swing.JFrame(), true);
+                SPJDialog dialog = new SPJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

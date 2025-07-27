@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.shop.dao;
+package com.shop.ui.Manager;
 
-import com.shop.entity.Drink;
-import java.util.List;
+import com.shop.entity.SP;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
-public interface DrinkDAO extends CrudDAO<Drink, String> {
-    List<Drink> findByCategoryId(String categoryId);
+public interface SPController extends CrudController<SP>{
+    void fillCategories();
+    void chooseFile();
 }

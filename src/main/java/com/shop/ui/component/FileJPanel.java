@@ -13,7 +13,7 @@ import com.shop.util.XIcon;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class FileJPanel extends javax.swing.JPanel {
 

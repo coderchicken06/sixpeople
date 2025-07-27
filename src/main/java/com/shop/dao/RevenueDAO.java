@@ -9,7 +9,7 @@ import java.util.List;
 import com.shop.entity.Revenue;
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public interface RevenueDAO {
     List<Revenue.ByCategory> getByCategory(Date begin, Date end);

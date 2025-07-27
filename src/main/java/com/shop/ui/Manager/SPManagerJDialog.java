@@ -10,30 +10,30 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import com.shop.dao.CategoryDAO;
-import com.shop.dao.DrinkDAO;
 import com.shop.dao.impl.CategoryDAOImpl;
-import com.shop.dao.impl.DrinkDAOImpl;
+import com.shop.dao.impl.SPDAOImpl;
 import com.shop.entity.Category;
-import com.shop.entity.Drink;
+import com.shop.entity.SP;
 import com.shop.util.XDialog;
 import com.shop.util.XIcon;
+import com.shop.dao.SPDAO;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
-public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkController {
+public class SPManagerJDialog extends javax.swing.JDialog implements SPController {
 
     /**
      * Creates new form DrinkJDialog
      */
-    public DrinkManagerJDialog(java.awt.Frame parent, boolean modal) {
+    public SPManagerJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    DrinkDAO dao = new DrinkDAOImpl();
-    List<Drink> items = List.of();
+    SPDAO dao = new SPDAOImpl();
+    List<SP> items = List.of();
 
     List<Category> categories = List.of();
 
@@ -87,7 +87,7 @@ public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkCon
 
     @Override
     public void edit() {
-        Drink entity = items.get(tblDrinks.getSelectedRow());
+        SP entity = items.get(tblDrinks.getSelectedRow());
         this.setForm(entity);
         this.setEditable(true);
         tabs.setSelectedIndex(1);
@@ -126,7 +126,7 @@ public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkCon
     }
 
     @Override
-    public void setForm(Drink entity) {
+    public void setForm(SP entity) {
         txtId.setText(entity.getId());
         txtName.setText(entity.getName());
         txtUnitPrice.setText(String.valueOf(entity.getUnitPrice()));
@@ -138,8 +138,8 @@ public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkCon
     }
 
     @Override
-    public Drink getForm() {
-        Drink entity = new Drink();
+    public SP getForm() {
+        SP entity = new SP();
         entity.setId(txtId.getText());
         entity.setName(txtName.getText());
 //        entity.setDiscount(sliDiscount.getValue() / 100.0);
@@ -153,7 +153,7 @@ public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkCon
 
     @Override
     public void create() {
-        Drink entity = this.getForm();
+        SP entity = this.getForm();
         dao.create(entity);
         this.fillToTable();
         this.clear();
@@ -161,7 +161,7 @@ public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkCon
 
     @Override
     public void update() {
-        Drink entity = this.getForm();
+        SP entity = this.getForm();
         dao.update(entity);
         this.fillToTable();
     }
@@ -178,7 +178,7 @@ public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkCon
 
     @Override
     public void clear() {
-        this.setForm(new Drink());
+        this.setForm(new SP());
         this.setEditable(false);
     }
 
@@ -660,14 +660,30 @@ public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkCon
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DrinkManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DrinkManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DrinkManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DrinkManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -688,7 +704,7 @@ public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkCon
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DrinkManagerJDialog dialog = new DrinkManagerJDialog(new javax.swing.JFrame(), true);
+                SPManagerJDialog dialog = new SPManagerJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

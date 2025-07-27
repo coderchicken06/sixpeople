@@ -6,7 +6,7 @@ package com.shop.ui.Manager;
 
 /**
  *
- * @author ADMIN
+ * @author Dung Si Ban Tron
  */
 public class Bill extends javax.swing.JFrame {
 

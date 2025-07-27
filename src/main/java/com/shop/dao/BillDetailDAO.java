@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public interface BillDetailDAO extends CrudDAO<BillDetail, Long> {
     List<BillDetail> findByBillId(Long billId);

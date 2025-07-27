@@ -16,10 +16,11 @@ import com.shop.dao.impl.BillDAOImpl;
 import com.shop.dao.impl.CardDAOImpl;
 import com.shop.entity.Bill;
 import com.shop.entity.Card;
+import javax.swing.ImageIcon;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class SalesJDialog extends javax.swing.JDialog implements SalesController {
 
@@ -29,6 +30,7 @@ public class SalesJDialog extends javax.swing.JDialog implements SalesController
     public SalesJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     /**

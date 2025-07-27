@@ -13,7 +13,7 @@ import com.shop.util.XDialog;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class CategoryManagerJDialog extends javax.swing.JDialog implements CategoryController {
 

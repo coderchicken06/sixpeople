@@ -7,7 +7,7 @@ import com.shop.entity.Bill;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public interface BillController {
 

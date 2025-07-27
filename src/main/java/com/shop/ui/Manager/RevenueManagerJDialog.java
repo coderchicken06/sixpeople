@@ -18,7 +18,7 @@ import java.net.URL;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class RevenueManagerJDialog extends javax.swing.JDialog implements RevenueController {
 

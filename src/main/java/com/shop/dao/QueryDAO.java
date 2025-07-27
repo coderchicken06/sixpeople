@@ -12,7 +12,7 @@ import com.shop.util.XJdbc;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public interface QueryDAO {
 

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public class Revenue {
 

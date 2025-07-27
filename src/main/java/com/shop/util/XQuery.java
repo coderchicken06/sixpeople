@@ -12,7 +12,7 @@ import com.shop.entity.User;
 /**
  * Lớp tiện ích hỗ trợ truy vấn và chuyển đổi sang đối tượng
  *
- * @author Duy Phuong
+ * @author Dung Si Ban Tron
  * @version 1.0
  */
 public class XQuery {

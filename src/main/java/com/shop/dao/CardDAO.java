@@ -8,7 +8,7 @@ import com.shop.entity.Card;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public interface CardDAO extends CrudDAO<Card, Integer> {
 }

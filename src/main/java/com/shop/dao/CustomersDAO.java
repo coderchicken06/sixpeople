@@ -8,7 +8,7 @@ package com.shop.dao;
 import com.shop.entity.Customers;
 /**
  *
- * @author AcerNitro
+ * @author Dung Si Ban Tron
  */
 public interface CustomersDAO extends CrudDAO<Customers, String>{
     

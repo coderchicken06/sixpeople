@@ -19,7 +19,7 @@ import com.shop.util.XStr;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class BillManagerJDialog extends javax.swing.JDialog implements BillController {
 

@@ -1,6 +1,6 @@
 package com.shop.util;
 
-import com.shop.entity.Drink;
+import com.shop.entity.SP;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ public class XJdbc {
     //@return Kết nối đã sẵn sàng
     public static Connection openConnection() {
         var driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        var dburl = "jdbc:sqlserver://Phamthanhdat;database=ShopGUCCHI;encrypt=true;trustServerCertificate=true;";
+        var dburl = "jdbc:sqlserver://Natsu;database=ShopGUCCHI;encrypt=true;trustServerCertificate=true;";
 
         var username = "sa";
         var password = "05082006";
@@ -122,9 +122,9 @@ public class XJdbc {
                 System.out.println("Kết nối thành công!");
                 // Query all drinks
                 String sql = "SELECT * FROM Drinks";
-                List<Drink> drinks = XQuery.getBeanList(Drink.class, sql);
+                List<SP> drinks = XQuery.getBeanList(SP.class, sql);
                 System.out.println("Danh sách đồ uống:");
-                for (Drink drink : drinks) {
+                for (SP drink : drinks) {
                     System.out.printf("ID: %s, Name: %s, Price: %.2f, Discount: %.2f, Image: %s, Available: %b, Category: %s%n",
                             drink.getId(), drink.getName(), drink.getUnitPrice(), drink.getDiscount(),
                             drink.getImage(), drink.isAvailable(), drink.getCategoryId());

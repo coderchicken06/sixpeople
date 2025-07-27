@@ -4,17 +4,17 @@
  */
 package com.shop.dao.impl;
 
-import com.shop.dao.DrinkDAO;
-import com.shop.entity.Drink;
+import com.shop.entity.SP;
 import com.shop.util.XJdbc;
 import com.shop.util.XQuery;
 import java.util.List;
+import com.shop.dao.SPDAO;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
-public class DrinkDAOImpl implements DrinkDAO {
+public class SPDAOImpl implements SPDAO {
 
     String createSql = "INSERT INTO Drinks (Id, Name, Image, UnitPrice, Discount, Available, CategoryId) VALUES (?, ?, ?, ?, ?, ?, ?)";
     String updateSql = "UPDATE Drinks SET Name = ?, Image = ?, UnitPrice = ?, Discount = ?, Available = ?, CategoryId = ? WHERE Id = ?";
@@ -24,7 +24,7 @@ public class DrinkDAOImpl implements DrinkDAO {
     String findByCategoryIdSql = "SELECT * FROM Drinks WHERE CategoryId = ?";
 
     @Override
-    public Drink create(Drink entity) {
+    public SP create(SP entity) {
         XJdbc.executeUpdate(createSql,
                 entity.getId(),
                 entity.getName(),
@@ -38,7 +38,7 @@ public class DrinkDAOImpl implements DrinkDAO {
     }
 
     @Override
-    public void update(Drink entity) {
+    public void update(SP entity) {
         XJdbc.executeUpdate(updateSql,
                 entity.getName(),
                 entity.getImage(),
@@ -68,17 +68,17 @@ public class DrinkDAOImpl implements DrinkDAO {
     }
 
     @Override
-    public List< Drink> findAll() {
-        return XQuery.getBeanList(Drink.class, findAllSql);
+    public List< SP> findAll() {
+        return XQuery.getBeanList(SP.class, findAllSql);
     }
 
     @Override
-    public Drink findById(String id) {
-        return XQuery.getSingleBean(Drink.class, findByIdSql, id);
+    public SP findById(String id) {
+        return XQuery.getSingleBean(SP.class, findByIdSql, id);
     }
 
     @Override
-    public List<Drink> findByCategoryId(String categoryId) {
-        return XQuery.getBeanList(Drink.class, findByCategoryIdSql, categoryId);
+    public List<SP> findByCategoryId(String categoryId) {
+        return XQuery.getBeanList(SP.class, findByCategoryIdSql, categoryId);
     }
 }

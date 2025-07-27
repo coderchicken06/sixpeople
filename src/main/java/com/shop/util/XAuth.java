@@ -8,7 +8,7 @@ import com.shop.entity.User;
 
 /**
  *
- * @author LENOVO
+ * @author Dung Si Ban Tron
  */
 public class XAuth {
 

@@ -6,19 +6,19 @@ package com.shop.ui.component;
 
 import java.util.function.Consumer;
 import lombok.Setter;
-import com.shop.entity.Drink;
+import com.shop.entity.SP;
 import com.shop.util.XIcon;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
-public class DrinkJPanel extends javax.swing.JPanel {
+public class SPJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form DrinkJPanel
      */
-    public DrinkJPanel() {
+    public SPJPanel() {
         initComponents();
     }
 
@@ -87,16 +87,16 @@ public class DrinkJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblUnitPrice;
     // End of variables declaration//GEN-END:variables
 
-    private Drink drink;
+    private SP drink;
     @Setter
     int width = 100;
     @Setter
     int height = 120;
     
     @Setter
-    Consumer<Drink> imageClicked;
+    Consumer<SP> imageClicked;
 
-    public void setDrink(Drink drink) {
+    public void setDrink(SP drink) {
         this.drink = drink;
         lblName.setText(drink.getName());
         lblUnitPrice.setText(String.format("%.1f", drink.getUnitPrice()*(1-drink.getDiscount())));
@@ -104,7 +104,7 @@ public class DrinkJPanel extends javax.swing.JPanel {
         lblImage.setIcon(XIcon.getIcon("images/" + drink.getImage(), width, height));
     }
     
-    public Drink getDrink(){
+    public SP getDrink(){
         return this.drink;
     }
 }

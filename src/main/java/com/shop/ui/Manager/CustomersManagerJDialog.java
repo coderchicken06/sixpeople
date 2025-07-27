@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class CustomersManagerJDialog extends javax.swing.JDialog implements CustomersController {
 

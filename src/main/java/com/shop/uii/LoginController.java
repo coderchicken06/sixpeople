@@ -8,7 +8,7 @@ import com.shop.util.XDialog;
 
 /**
  *
- * @author Duy Phuong
+ * @author Dung Si Ban Tron
  */
 public interface LoginController {
 

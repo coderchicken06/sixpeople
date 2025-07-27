@@ -8,9 +8,9 @@ import com.shop.entity.Bill;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
-public interface DrinkController {
+public interface SPController {
 
     void setBill(Bill bill);
 

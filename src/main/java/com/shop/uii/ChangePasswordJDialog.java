@@ -8,10 +8,11 @@ import com.shop.dao.UserDAO;
 import com.shop.dao.impl.UserDAOImpl;
 import com.shop.util.XAuth;
 import com.shop.util.XDialog;
+import javax.swing.ImageIcon;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public class ChangePasswordJDialog extends javax.swing.JDialog implements ChangePasswordController {
 
@@ -22,6 +23,7 @@ public class ChangePasswordJDialog extends javax.swing.JDialog implements Change
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     UserDAO dao = new UserDAOImpl();

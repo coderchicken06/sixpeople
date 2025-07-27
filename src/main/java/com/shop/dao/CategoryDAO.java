@@ -8,7 +8,7 @@ import com.shop.entity.Category;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public interface CategoryDAO extends CrudDAO<Category, String> {
 

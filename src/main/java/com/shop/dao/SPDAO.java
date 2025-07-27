@@ -2,14 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.shop.entity;
+package com.shop.dao;
+
+import com.shop.entity.SP;
+import java.util.List;
 
 /**
  *
- * @author PC
+ * @author Dung Si Ban Tron
  */
-public class NewClass1 {
-  public static void main(String[] args) {
-        System.out.println("Xin chào!");
-    }
+public interface SPDAO extends CrudDAO<SP, String> {
+    List<SP> findByCategoryId(String categoryId);
 }

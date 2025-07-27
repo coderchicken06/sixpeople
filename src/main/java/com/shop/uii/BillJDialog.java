@@ -18,11 +18,12 @@ import com.shop.entity.Bill;
 import com.shop.entity.BillDetail;
 import com.shop.util.XDate;
 import com.shop.util.XDialog;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class BillJDialog extends javax.swing.JDialog implements BillController {
 
@@ -32,6 +33,7 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
     public BillJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     @Setter
@@ -98,11 +100,11 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
     public void showDrinkJDialog() {
         
         
-        DrinkJDialog dialog = new DrinkJDialog((Frame) this.getOwner(), true);
+        SPJDialog dialog = new SPJDialog((Frame) this.getOwner(), true);
         dialog.setBill(bill); // bill chứa đồ uống chọn thêm
         dialog.setVisible(true);
 
-        // Refresh bill details khi cửa sổ chọn đồ uống (DrinkJDialog) đóng lại
+        // Refresh bill details khi cửa sổ chọn đồ uống (SPJDialog) đóng lại
         dialog.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {

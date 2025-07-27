@@ -7,7 +7,7 @@ package com.shop.uii;
 import com.shop.ui.Manager.BillManagerJDialog;
 import com.shop.ui.Manager.CardManagerJDialog;
 import com.shop.ui.Manager.CategoryManagerJDialog;
-import com.shop.ui.Manager.DrinkManagerJDialog;
+import com.shop.ui.Manager.SPManagerJDialog;
 import com.shop.ui.Manager.RevenueManagerJDialog;
 import com.shop.ui.Manager.UserManagerJDialog;
 import com.shop.util.XDialog;
@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public interface PolyShopController {
 
@@ -58,7 +58,7 @@ public interface PolyShopController {
     }
 
     default void showDrinkManagerJDialog(JFrame frame) {
-        this.showJDialog(new DrinkManagerJDialog(frame, true));
+        this.showJDialog(new SPManagerJDialog(frame, true));
     }
 
     default void showCategoryManagerJDialog(JFrame frame) {

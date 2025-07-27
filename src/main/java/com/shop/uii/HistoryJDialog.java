@@ -14,10 +14,11 @@ import com.shop.entity.Bill;
 import com.shop.util.TimeRange;
 import com.shop.util.XAuth;
 import com.shop.util.XDate;
+import javax.swing.ImageIcon;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class HistoryJDialog extends javax.swing.JDialog implements HistoryController {
 
@@ -27,6 +28,7 @@ public class HistoryJDialog extends javax.swing.JDialog implements HistoryContro
     public HistoryJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     /**

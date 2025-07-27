@@ -13,7 +13,7 @@ import com.shop.util.XQuery;
 
 /**
  *
- * @author 
+ * @author Dung Si Ban Tron
  */
 public class Test {
 

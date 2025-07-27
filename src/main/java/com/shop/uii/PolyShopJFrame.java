@@ -5,10 +5,11 @@
 package com.shop.uii;
 
 import com.shop.util.XIcon;
+import javax.swing.ImageIcon;
 
 /**
  *
- * @author Duy Phuong
+ * @author Dung Si Ban Tron
  */
 public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShopController {
 
@@ -19,6 +20,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         initComponents();
         setLocationRelativeTo(null);
         this.init();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     @Override

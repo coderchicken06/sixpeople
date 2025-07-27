@@ -6,7 +6,7 @@ package com.shop.ui.Manager;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public interface CrudController<Entity> {
     void open(); // Xử lý mở cửa sổ

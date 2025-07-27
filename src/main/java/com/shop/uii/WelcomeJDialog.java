@@ -6,11 +6,12 @@ package com.shop.uii;
 
 import com.shop.uii.WelcomeController;
 import com.shop.uii.LoginJDialog;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 /**
  *
- * @author Anh Vu
+ * @author Dung Si Ban Tron
  */
 public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeController {
 
@@ -18,6 +19,7 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
         super(parent, modal);
         initComponents();
         new Timer(2000, e -> dispose()).start(); // tự đóng sau 2 giây
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     
@@ -52,12 +54,18 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         lblNumber = new javax.swing.JLabel();
         ProgressBar = new javax.swing.JProgressBar();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+
+        jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -70,7 +78,7 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("SHOP THỜI TRANG");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, -1, -1));
 
         lblNumber.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -79,13 +87,23 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
         getContentPane().add(ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 420, 20));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Thêm tiêu đề.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -10, 500, 520));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 500, 490));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 190, 510));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 190, 530));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 120, 490));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jPanel3);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jPanel4);
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 120, 540));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 470, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -151,6 +169,10 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblNumber;
     // End of variables declaration//GEN-END:variables
 }

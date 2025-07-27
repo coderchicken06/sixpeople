@@ -6,7 +6,7 @@ package com.shop.uii;
 
 /**
  *
- * @author Duy Phuong
+ * @author Dung Si Ban Tron
  */
 public interface WelcomeController {
     void Waiting();

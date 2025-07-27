@@ -8,7 +8,7 @@ import com.shop.entity.User;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public interface UserController extends CrudController<User>{
 }

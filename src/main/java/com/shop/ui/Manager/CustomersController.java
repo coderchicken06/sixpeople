@@ -7,7 +7,7 @@ package com.shop.ui.Manager;
 import com.shop.entity.Customers;
 /**
  *
- * @author AcerNitro
+ * @author Dung Si Ban Tron
  */
 public interface CustomersController extends CrudController<Customers>{
     

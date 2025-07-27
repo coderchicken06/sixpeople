@@ -13,7 +13,7 @@ import com.shop.util.XDialog;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class CardManagerJDialog extends javax.swing.JDialog implements CardController {
 

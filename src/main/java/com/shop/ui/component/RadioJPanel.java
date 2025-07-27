@@ -9,7 +9,7 @@ import javax.swing.JRadioButton;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class RadioJPanel extends javax.swing.JPanel {
 

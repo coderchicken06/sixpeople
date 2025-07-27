@@ -9,7 +9,7 @@ import lombok.Setter;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class SliderJPanel extends javax.swing.JPanel {
 

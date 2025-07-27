@@ -13,7 +13,7 @@ import com.shop.util.XQuery;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public class RevenueDAOImpl implements RevenueDAO {
 

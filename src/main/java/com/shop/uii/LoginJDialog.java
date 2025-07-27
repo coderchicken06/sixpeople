@@ -8,9 +8,10 @@ import com.shop.dao.impl.UserDAOImpl;
 import com.shop.entity.User;
 import com.shop.util.XAuth;
 import com.shop.util.XDialog;
+import javax.swing.ImageIcon;
 /**
  *
- * @author Duy Phuong
+ * @author Dung Si Ban Tron
  */
 public class LoginJDialog extends javax.swing.JDialog implements LoginController {
 
@@ -21,6 +22,7 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
     @Override
     public void open() {

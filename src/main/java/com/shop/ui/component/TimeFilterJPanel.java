@@ -13,7 +13,7 @@ import com.shop.util.XDate;
 
 /**
  *
- * @author DELL
+ * @author Dung Si Ban Tron
  */
 public class TimeFilterJPanel extends javax.swing.JPanel {
 

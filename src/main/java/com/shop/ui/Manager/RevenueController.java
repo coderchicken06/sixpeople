@@ -6,7 +6,7 @@ package com.shop.ui.Manager;
 
 /**
  *
- * @author VAN TRONG
+ * @author Dung Si Ban Tron
  */
 public interface RevenueController {
     void open(); // hiển thị doanh thu từng loại trong ngày
