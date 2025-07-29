@@ -57,7 +57,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/thiet-ke-shop-52.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 760, 510));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 760, 550));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -78,7 +78,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         });
 
         btnUserManager.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnUserManager.setText("HÓA ĐƠN");
+        btnUserManager.setText("NHÂN VIÊN");
         btnUserManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUserManagerActionPerformed(evt);
@@ -86,7 +86,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         });
 
         btnCardManager.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnCardManager.setText("NHÂN VIÊN");
+        btnCardManager.setText("HÓA ĐƠN");
         btnCardManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCardManagerActionPerformed(evt);

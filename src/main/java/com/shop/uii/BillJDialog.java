@@ -143,13 +143,12 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
     public void checkout() {
         
         billDetails = detailDao.findByBillId(bill.getId()); // cập nhật lại danh sách
+        if(billDetails==null||billDetails.isEmpty()){
+            JOptionPane.showMessageDialog(this, "chưa có sản phẩm để thanh toán", "thông báo", JOptionPane.WARNING_MESSAGE);
+            return ;
+        }
 
-    if (billDetails.size() > 20) {
-        JOptionPane.showMessageDialog(this,
-            "Không thể thanh toán vì số lượng đồ uống vượt quá 20!",
-            "Lỗi", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+   
         if (XDialog.confirm("Bạn muốn thanh toán phiếu bán hàng?")) {
             bill.setStatus(Bill.Status.Completed.ordinal());
             bill.setCheckout(new Date());
