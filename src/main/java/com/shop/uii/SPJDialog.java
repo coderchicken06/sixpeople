@@ -19,17 +19,20 @@ import com.shop.util.XDialog;
 import javax.swing.ImageIcon;
 import com.shop.dao.SPDAO;
 
+import java.awt.Frame;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class SPJDialog extends javax.swing.JDialog implements SPController {
+public class SPJDialog extends JFrame {
 
     /**
      * Creates new form AddDrinkToBillJDialog
      */
-    public SPJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public SPJDialog(Frame parent) {
+        super("");
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
@@ -40,14 +43,14 @@ public class SPJDialog extends javax.swing.JDialog implements SPController {
     List<Category> categories = List.of();
     List<SP> drinks = List.of();
 
-    @Override
+    
     public void open() {
         this.setLocationRelativeTo(null);
         this.fillCategories();
         this.fillDrinks();
     }
 
-    @Override
+  
     public void fillCategories() {
         CategoryDAO categoryDao = new CategoryDAOImpl();
         categories = categoryDao.findAll();
@@ -57,7 +60,7 @@ public class SPJDialog extends javax.swing.JDialog implements SPController {
         tblCategories.setRowSelectionInterval(0, 0);
     }
 
-    @Override
+ 
     public void fillDrinks() {
         Category category = categories.get(tblCategories.getSelectedRow());
 
@@ -77,7 +80,7 @@ public class SPJDialog extends javax.swing.JDialog implements SPController {
         });
     }
 
-    @Override
+
     public void addDrinkToBill() {
         SP drink = drinks.get(tblDrinks.getSelectedRow());
 
@@ -310,14 +313,9 @@ public class SPJDialog extends javax.swing.JDialog implements SPController {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                SPJDialog dialog = new SPJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+        SPJDialog frame = new SPJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }

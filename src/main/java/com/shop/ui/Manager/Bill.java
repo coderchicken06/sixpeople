@@ -4,16 +4,20 @@
  */
 package com.shop.ui.Manager;
 
+import java.awt.Frame;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class Bill extends javax.swing.JFrame {
+public class Bill extends JFrame {
 
     /**
      * Creates new form Bill
      */
-    public Bill() {
+    public Bill(Frame parent) {
+        super("");
         initComponents();
     }
 
@@ -217,7 +221,9 @@ public class Bill extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Bill().setVisible(true);
+        CustomersManagerJDialog frame = new CustomersManagerJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }

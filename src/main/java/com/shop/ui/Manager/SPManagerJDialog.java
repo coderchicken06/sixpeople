@@ -17,18 +17,20 @@ import com.shop.entity.SP;
 import com.shop.util.XDialog;
 import com.shop.util.XIcon;
 import com.shop.dao.SPDAO;
+import java.awt.Frame;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class SPManagerJDialog extends javax.swing.JDialog implements SPController {
+public class SPManagerJDialog extends JFrame {
 
     /**
      * Creates new form DrinkJDialog
      */
-    public SPManagerJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public SPManagerJDialog(Frame parent) {
+        super("");
         initComponents();
     }
 
@@ -37,7 +39,7 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
 
     List<Category> categories = List.of();
 
-    @Override
+
     public void open() {
         this.setLocationRelativeTo(null);
         this.fillCategories();
@@ -45,7 +47,7 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         this.clear();
     }
 
-    @Override
+
     public void fillCategories() {
         DefaultComboBoxModel cboModel = (DefaultComboBoxModel) cboCategories.getModel();
         cboModel.removeAllElements();
@@ -64,7 +66,7 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         tblCategories.setRowSelectionInterval(0, 0);
     }
 
-    @Override
+
     public void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblDrinks.getModel();
         model.setRowCount(0);
@@ -85,7 +87,7 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         this.clear();
     }
 
-    @Override
+
     public void edit() {
         SP entity = items.get(tblDrinks.getSelectedRow());
         this.setForm(entity);
@@ -93,12 +95,12 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         tabs.setSelectedIndex(1);
     }
 
-    @Override
+
     public void checkAll() {
         this.setCheckedAll(true);
     }
 
-    @Override
+
     public void uncheckAll() {
         this.setCheckedAll(false);
     }
@@ -109,7 +111,7 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         }
     }
 
-    @Override
+ 
     public void deleteCheckedItems() {
         try {
             if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
@@ -125,7 +127,7 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         }
     }
 
-    @Override
+
     public void setForm(SP entity) {
         txtId.setText(entity.getId());
         txtName.setText(entity.getName());
@@ -137,7 +139,7 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         cboCategories.setSelectedItem(category);
     }
 
-    @Override
+
     public SP getForm() {
         SP entity = new SP();
         entity.setId(txtId.getText());
@@ -151,7 +153,6 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         return entity;
     }
 
-    @Override
     public void create() {
         SP entity = this.getForm();
         dao.create(entity);
@@ -159,14 +160,14 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         this.clear();
     }
 
-    @Override
+
     public void update() {
         SP entity = this.getForm();
         dao.update(entity);
         this.fillToTable();
     }
 
-    @Override
+  
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
             String id = txtId.getText();
@@ -176,13 +177,12 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         }
     }
 
-    @Override
+   
     public void clear() {
         this.setForm(new SP());
         this.setEditable(false);
     }
 
-    @Override
     public void setEditable(boolean editable) {
         txtId.setEnabled(!editable);
         btnCreate.setEnabled(!editable);
@@ -196,27 +196,27 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         btnMoveLast.setEnabled(editable && rowCount > 0);
     }
 
-    @Override
+
     public void moveFirst() {
         this.moveTo(0);
     }
 
-    @Override
+ 
     public void movePrevious() {
         this.moveTo(tblDrinks.getSelectedRow() - 1);
     }
 
-    @Override
+    
     public void moveNext() {
         this.moveTo(tblDrinks.getSelectedRow() + 1);
     }
 
-    @Override
+  
     public void moveLast() {
         this.moveTo(tblDrinks.getRowCount() - 1);
     }
 
-    @Override
+   
     public void moveTo(int index) {
         if (index < 0) {
             this.moveLast();
@@ -229,7 +229,6 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         }
     }
 
-    @Override
     public void chooseFile() {
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
@@ -704,14 +703,9 @@ public class SPManagerJDialog extends javax.swing.JDialog implements SPControlle
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                SPManagerJDialog dialog = new SPManagerJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+        SPManagerJDialog frame = new SPManagerJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }

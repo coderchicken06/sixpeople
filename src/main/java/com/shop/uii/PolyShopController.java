@@ -50,34 +50,34 @@ public interface PolyShopController {
     }
 
     default void showSalesJDialog(JFrame frame) {
-        this.showJDialog(new SalesJDialog(frame, true));
+        new SalesJDialog(frame).setVisible(true);
     }
 
     default void showHistoryJDialog(JFrame frame) {
-        this.showJDialog(new HistoryJDialog(frame, true));
+        new HistoryJDialog(frame).setVisible(true);
     }
 
     default void showDrinkManagerJDialog(JFrame frame) {
-        this.showJDialog(new SPManagerJDialog(frame, true));
+        new SPManagerJDialog(frame).setVisible(true);
     }
 
     default void showCategoryManagerJDialog(JFrame frame) {
-        this.showJDialog(new CategoryManagerJDialog(frame, true));
+       new CategoryManagerJDialog(frame).setVisible(true);
     }
 
     default void showCardManagerJDialog(JFrame frame) {
-        this.showJDialog(new CardManagerJDialog(frame, true));
+        new CardManagerJDialog(frame).setVisible(true);
     }
 
     default void showBillManagerJDialog(JFrame frame) {
-        this.showJDialog(new BillManagerJDialog(frame, true));
+        new BillManagerJDialog(frame).setVisible(true);
     }
 
     default void showUserManagerJDialog(JFrame frame) {
-        this.showJDialog(new UserManagerJDialog(frame, true));
+        new UserManagerJDialog(frame).setVisible(true);
     }
 
     default void showRevenueManagerJDialog(JFrame frame) {
-        this.showJDialog(new RevenueManagerJDialog(frame, true));
+        new RevenueManagerJDialog(frame).setVisible(true);
     }
 }

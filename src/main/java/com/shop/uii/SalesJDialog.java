@@ -17,18 +17,19 @@ import com.shop.dao.impl.CardDAOImpl;
 import com.shop.entity.Bill;
 import com.shop.entity.Card;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class SalesJDialog extends javax.swing.JDialog implements SalesController {
+public class SalesJDialog extends JFrame {
 
     /**
      * Creates new form CardJDialog
      */
-    public SalesJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public SalesJDialog(Frame parent) {
+        super("sale");
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
@@ -120,14 +121,9 @@ public class SalesJDialog extends javax.swing.JDialog implements SalesController
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                SalesJDialog dialog = new SalesJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+        SPJDialog frame = new SPJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }
@@ -137,18 +133,18 @@ public class SalesJDialog extends javax.swing.JDialog implements SalesController
     private javax.swing.JPanel pnlCard;
     // End of variables declaration//GEN-END:variables
 
-@Override
+
 public void open() {
     this.setLocationRelativeTo(null);
     this.loadCards();
 }
 
-@Override
+
 public void showBillJDialog(int cardId) {
     BillDAO dao = new BillDAOImpl();
     Bill bill = dao.findServicingByCardId(cardId);
 
-    BillJDialog dialog = new BillJDialog((Frame) this.getOwner(), true);
+    BillJDialog dialog = new BillJDialog((Frame) this.getOwner());
     dialog.setBill(bill);
     dialog.setVisible(true);
 }

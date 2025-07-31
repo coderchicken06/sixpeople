@@ -16,24 +16,26 @@ import com.shop.dao.impl.BillDAOImpl;
 import com.shop.dao.impl.BillDetailDAOImpl;
 import com.shop.entity.Bill;
 import com.shop.entity.BillDetail;
+import com.shop.ui.Manager.RevenueManagerJDialog;
+import com.shop.ui.Manager.UserManagerJDialog;
 import com.shop.util.XDate;
 import com.shop.util.XDialog;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class BillJDialog extends javax.swing.JDialog implements BillController {
+public class BillJDialog extends JFrame {
 
     /**
      * Creates new form BillDetailJDialog
      */
-    public BillJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public BillJDialog(Frame parent) {
+        super("add sp");
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     @Setter
@@ -43,7 +45,7 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
     BillDAO billDao = new BillDAOImpl();
     BillDetailDAO detailDao = new BillDetailDAOImpl();
 
-    @Override
+   
     public void open() {
         this.setLocationRelativeTo(null);
         if (bill == null) {
@@ -53,7 +55,7 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
         this.fillBillDetails();
     }
 
-    @Override
+  
     public void close() {
         if (billDetails.isEmpty()) {
             billDao.deleteById(bill.getId());
@@ -96,11 +98,11 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
         });
     }
 
-    @Override
+    
     public void showDrinkJDialog() {
         
         
-        SPJDialog dialog = new SPJDialog((Frame) this.getOwner(), true);
+        SPJDialog dialog = new SPJDialog((Frame) this.getOwner());
         dialog.setBill(bill); // bill chứa đồ uống chọn thêm
         dialog.setVisible(true);
 
@@ -115,7 +117,7 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
         });
     }
 
-    @Override
+    
     public void removeDrinks() {
         for (int i = 0; i < tblBillDetails.getRowCount(); i++) {
             Boolean checked = (Boolean) tblBillDetails.getValueAt(i, 0);
@@ -126,7 +128,7 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
         this.fillBillDetails();
     }
 
-    @Override
+   
     public void updateQuantity() {
         if (bill.getStatus() == 0) { // chưa thanh toán hoặc không canceled
             String input = XDialog.prompt("Số lượng mới?");
@@ -139,7 +141,7 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
         }
     }
 
-    @Override
+  
     public void checkout() {
         
         billDetails = detailDao.findByBillId(bill.getId()); // cập nhật lại danh sách
@@ -157,7 +159,7 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
         }
     }
 
-    @Override
+   
     public void cancel() {
         if (billDetails.isEmpty()) {
             billDao.deleteById(bill.getId());
@@ -440,14 +442,9 @@ public class BillJDialog extends javax.swing.JDialog implements BillController {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BillJDialog dialog = new BillJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+        BillJDialog frame = new BillJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }

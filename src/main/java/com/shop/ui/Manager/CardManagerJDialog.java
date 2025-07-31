@@ -10,32 +10,34 @@ import com.shop.dao.CardDAO;
 import com.shop.dao.impl.CardDAOImpl;
 import com.shop.entity.Card;
 import com.shop.util.XDialog;
+import java.awt.Frame;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class CardManagerJDialog extends javax.swing.JDialog implements CardController {
+public class CardManagerJDialog extends JFrame {
 
     /**
      * Creates new form CardJDialog
      */
-    public CardManagerJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public CardManagerJDialog(Frame parent) {
+        super("");
         initComponents();
     }
 
     CardDAO dao = new CardDAOImpl();
     List<Card> items = List.of();
 
-    @Override
+ 
     public void open() {
         this.setLocationRelativeTo(null);
         this.fillToTable();
         this.clear();
     }
 
-    @Override
+
     public void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblCards.getModel();
         model.setRowCount(0);
@@ -51,7 +53,7 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         });
     }
 
-    @Override
+
     public void edit() {
         Card entity = items.get(tblCards.getSelectedRow());
         this.setForm(entity);
@@ -59,12 +61,10 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         tabs.setSelectedIndex(1);
     }
 
-    @Override
     public void checkAll() {
         this.setCheckedAll(true);
     }
 
-    @Override
     public void uncheckAll() {
         this.setCheckedAll(false);
     }
@@ -75,7 +75,7 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         }
     }
 
-    @Override
+   
     public void deleteCheckedItems() {
         try {
             if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
@@ -91,13 +91,13 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         }
     }
 
-    @Override
+   
     public void setForm(Card entity) {
         txtId.setText(String.valueOf(entity.getId()));
 //        rdoStatus.setIndex(entity.getStatus());
     }
 
-    @Override
+
     public Card getForm() {
         Card entity = new Card();
         entity.setId(Integer.valueOf(txtId.getText()));
@@ -105,7 +105,7 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         return entity;
     }
 
-    @Override
+   
     public void create() {
         Card entity = this.getForm();
         dao.create(entity);
@@ -113,7 +113,7 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         this.clear();
     }
 
-    @Override
+   
     public void update() {
         try {
             Card entity = this.getForm();
@@ -125,7 +125,7 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         }
     }
 
-    @Override
+   
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
             Integer id = Integer.valueOf(txtId.getText());
@@ -135,13 +135,13 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         }
     }
 
-    @Override
+   
     public void clear() {
         this.setForm(new Card());
         this.setEditable(false);
     }
 
-    @Override
+    
     public void setEditable(boolean editable) {
         txtId.setEnabled(!editable);
         btnCreate.setEnabled(!editable);
@@ -155,27 +155,27 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         btnMoveLast.setEnabled(editable && rowCount > 0);
     }
 
-    @Override
+   
     public void moveFirst() {
         this.moveTo(0);
     }
 
-    @Override
+    
     public void movePrevious() {
         this.moveTo(tblCards.getSelectedRow() - 1);
     }
 
-    @Override
+   
     public void moveNext() {
         this.moveTo(tblCards.getSelectedRow() + 1);
     }
 
-    @Override
+    
     public void moveLast() {
         this.moveTo(tblCards.getRowCount() - 1);
     }
 
-    @Override
+  
     public void moveTo(int index) {
         if (index < 0) {
             this.moveLast();
@@ -537,14 +537,9 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CardManagerJDialog dialog = new CardManagerJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+        CardManagerJDialog frame = new CardManagerJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }

@@ -12,35 +12,29 @@ import com.shop.dao.impl.RevenueDAOImpl;
 import com.shop.entity.Revenue;
 import com.shop.util.TimeRange;
 import com.shop.util.XDate;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import com.shop.uii.PolyShopController;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class RevenueManagerJDialog extends javax.swing.JDialog implements RevenueController {
+public class RevenueManagerJDialog extends JFrame {
 
     /**
      * Creates new form BillJDialog
      */
-    public RevenueManagerJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public RevenueManagerJDialog(Frame parent) {
+        super("doanh thu");
         initComponents();
- URL url = getClass().getResource("/com/cafe/ui/Thêm tiêu đề.png");
-
-if (url != null) {
-    Image icon = Toolkit.getDefaultToolkit().getImage(url);
-    setIconImage(icon);
-} else {
-    System.err.println("Không tìm thấy ảnh: /com/cafe/ui/Logo2.png");
-    // Có thể dùng ảnh mặc định hoặc bỏ qua
-}
-
-
 
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -258,14 +252,9 @@ if (url != null) {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RevenueManagerJDialog dialog = new RevenueManagerJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+        RevenueManagerJDialog frame = new RevenueManagerJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }
@@ -290,13 +279,13 @@ if (url != null) {
 
 RevenueDAO dao = new RevenueDAOImpl();
 
-@Override
+
 public void open() {
     this.setLocationRelativeTo(null);
     this.selectTimeRange();
 }
 
-@Override
+
 public void selectTimeRange() {
     TimeRange range = TimeRange.today();
     switch (cboTimeRanges.getSelectedIndex()) {
@@ -312,7 +301,7 @@ public void selectTimeRange() {
     this.fillRevenue();
 }
 
-@Override
+
 public void fillRevenue() {
     Date begin = XDate.parse(txtBegin.getText(), "MM/dd/yyyy");
     Date end = XDate.parse(txtEnd.getText(), "MM/dd/yyyy");

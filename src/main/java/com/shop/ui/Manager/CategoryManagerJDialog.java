@@ -10,15 +10,17 @@ import com.shop.dao.CategoryDAO;
 import com.shop.dao.impl.CategoryDAOImpl;
 import com.shop.entity.Category;
 import com.shop.util.XDialog;
+import java.awt.Frame;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class CategoryManagerJDialog extends javax.swing.JDialog implements CategoryController {
+public class CategoryManagerJDialog extends JFrame {
 
-    public CategoryManagerJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public CategoryManagerJDialog(Frame parent) {
+        super();
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -26,14 +28,14 @@ public class CategoryManagerJDialog extends javax.swing.JDialog implements Categ
     CategoryDAO dao = new CategoryDAOImpl();
     List<Category> items = List.of();
 
-    @Override
+    
     public void open() {
         this.setLocationRelativeTo(null);
         this.fillToTable();
         this.clear();
     }
 
-    @Override
+    
     public void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblCategories.getModel();
         model.setRowCount(0);
@@ -48,7 +50,7 @@ public class CategoryManagerJDialog extends javax.swing.JDialog implements Categ
         });
     }
 
-    @Override
+   
     public void edit() {
         Category entity = items.get(tblCategories.getSelectedRow());
         this.setForm(entity);
@@ -56,12 +58,12 @@ public class CategoryManagerJDialog extends javax.swing.JDialog implements Categ
         tabs.setSelectedIndex(1);
     }
 
-    @Override
+   
     public void checkAll() {
         this.setCheckedAll(true);
     }
 
-    @Override
+  
     public void uncheckAll() {
         this.setCheckedAll(false);
     }
@@ -72,7 +74,7 @@ public class CategoryManagerJDialog extends javax.swing.JDialog implements Categ
         }
     }
 
-    @Override
+   
     public void deleteCheckedItems() {
         try {
             if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
@@ -88,13 +90,13 @@ public class CategoryManagerJDialog extends javax.swing.JDialog implements Categ
         }
     }
 
-    @Override
+  
     public void setForm(Category entity) {
         txtId.setText(entity.getId());
         txtName.setText(entity.getName());
     }
 
-    @Override
+  
     public Category getForm() {
         Category entity = new Category();
         entity.setId(txtId.getText());
@@ -102,7 +104,7 @@ public class CategoryManagerJDialog extends javax.swing.JDialog implements Categ
         return entity;
     }
 
-    @Override
+  
     public void create() {
         Category entity = this.getForm();
         dao.create(entity);
@@ -110,14 +112,14 @@ public class CategoryManagerJDialog extends javax.swing.JDialog implements Categ
         this.clear();
     }
 
-    @Override
+   
     public void update() {
         Category entity = this.getForm();
         dao.update(entity);
         this.fillToTable();
     }
 
-    @Override
+    
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
             String id = txtId.getText();
@@ -127,13 +129,13 @@ public class CategoryManagerJDialog extends javax.swing.JDialog implements Categ
         }
     }
 
-    @Override
+   
     public void clear() {
         this.setForm(new Category());
         this.setEditable(false);
     }
 
-    @Override
+ 
     public void setEditable(boolean editable) {
         txtId.setEnabled(!editable);
         btnCreate.setEnabled(!editable);
@@ -146,27 +148,27 @@ public class CategoryManagerJDialog extends javax.swing.JDialog implements Categ
         btnMoveLast.setEnabled(editable && rowCount > 0);
     }
 
-    @Override
+   
     public void moveFirst() {
         this.moveTo(0);
     }
 
-    @Override
+    
     public void movePrevious() {
         this.moveTo(tblCategories.getSelectedRow() - 1);
     }
 
-    @Override
+   
     public void moveNext() {
         this.moveTo(tblCategories.getSelectedRow() + 1);
     }
 
-    @Override
+  
     public void moveLast() {
         this.moveTo(tblCategories.getRowCount() - 1);
     }
 
-    @Override
+    
     public void moveTo(int index) {
         if (index < 0) {
             this.moveLast();
@@ -539,14 +541,9 @@ public class CategoryManagerJDialog extends javax.swing.JDialog implements Categ
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CategoryManagerJDialog dialog = new CategoryManagerJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+        CustomersManagerJDialog frame = new CustomersManagerJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }

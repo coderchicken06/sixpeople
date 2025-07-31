@@ -10,32 +10,34 @@ import com.shop.dao.UserDAO;
 import com.shop.dao.impl.UserDAOImpl;
 import com.shop.entity.User;
 import com.shop.util.XDialog;
+import java.awt.Frame;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class UserManagerJDialog extends javax.swing.JDialog implements UserController {
+public class UserManagerJDialog extends JFrame {
 
     /**
      * Creates new form UserJDialog
      */
-    public UserManagerJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public UserManagerJDialog(Frame parent) {
+        super("Nhân Viên");
         initComponents();
     }
 
     UserDAO dao = new UserDAOImpl();
     List<User> items = List.of();
 
-    @Override
+  
     public void open() {
         this.setLocationRelativeTo(null);
         this.fillToTable();
         this.clear();
     }
 
-    @Override
+   
     public void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblUsers.getModel();
         model.setRowCount(0);
@@ -55,7 +57,7 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
         });
     }
 
-    @Override
+   
     public void edit() {
         User entity = items.get(tblUsers.getSelectedRow());
         this.setForm(entity);
@@ -63,12 +65,12 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
         tabs.setSelectedIndex(1);
     }
 
-    @Override
+    
     public void checkAll() {
         this.setCheckedAll(true);
     }
 
-    @Override
+    
     public void uncheckAll() {
         this.setCheckedAll(false);
     }
@@ -79,7 +81,7 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
         }
     }
 
-    @Override
+    
     public void deleteCheckedItems() {
         try {
             if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
@@ -95,7 +97,7 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
         }
     }
 
-    @Override
+  
     public void setForm(User entity) {
         txtUsername.setText(entity.getUsername());
         txtPassword.setText(entity.getPassword());
@@ -109,7 +111,7 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
 //        rdoManager.setIndex(entity.isManager() ? 0 : 1);
     }
 
-    @Override
+   
     public User getForm() {
         User entity = new User();
         entity.setUsername(txtUsername.getText());
@@ -121,7 +123,7 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
         return entity;
     }
 
-    @Override
+  
     public void create() {
         User entity = this.getForm();
         dao.create(entity);
@@ -129,14 +131,14 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
         this.clear();
     }
 
-    @Override
+
     public void update() {
         User entity = this.getForm();
         dao.update(entity);
         this.fillToTable();
     }
 
-    @Override
+   
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
             String id = txtUsername.getText();
@@ -146,13 +148,13 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
         }
     }
 
-    @Override
+   
     public void clear() {
         this.setForm(new User());
         this.setEditable(false);
     }
 
-    @Override
+ 
     public void setEditable(boolean editable) {
         txtUsername.setEnabled(!editable);
         btnCreate.setEnabled(!editable);
@@ -166,27 +168,26 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
         btnMoveLast.setEnabled(editable && rowCount > 0);
     }
 
-    @Override
+   
     public void moveFirst() {
         this.moveTo(0);
     }
 
-    @Override
+  
     public void movePrevious() {
         this.moveTo(tblUsers.getSelectedRow() - 1);
     }
 
-    @Override
+  
     public void moveNext() {
         this.moveTo(tblUsers.getSelectedRow() + 1);
     }
 
-    @Override
+  
     public void moveLast() {
         this.moveTo(tblUsers.getRowCount() - 1);
     }
 
-    @Override
     public void moveTo(int index) {
         if (index < 0) {
             this.moveLast();
@@ -575,14 +576,9 @@ public class UserManagerJDialog extends javax.swing.JDialog implements UserContr
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                UserManagerJDialog dialog = new UserManagerJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+        UserManagerJDialog frame = new UserManagerJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }

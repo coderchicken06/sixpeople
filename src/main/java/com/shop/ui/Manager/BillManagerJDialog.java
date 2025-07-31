@@ -16,18 +16,20 @@ import com.shop.util.TimeRange;
 import com.shop.util.XDate;
 import com.shop.util.XDialog;
 import com.shop.util.XStr;
+import java.awt.Frame;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class BillManagerJDialog extends javax.swing.JDialog implements BillController {
+public class BillManagerJDialog extends JFrame {
 
     /**
      * Creates new form BillJDialog
      */
-    public BillManagerJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public BillManagerJDialog(Frame parent) {
+        super("BIll");
         initComponents();
     }
 
@@ -36,7 +38,7 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
     BillDetailDAO billDetailDao = new BillDetailDAOImpl();
     List<BillDetail> details = List.of();
 
-    @Override
+   
     public void open() {
         this.setLocationRelativeTo(null);
 //        filter.setTimeChanged((from, to) -> this.fillToTable());
@@ -44,7 +46,7 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         this.clear();
     }
 
-    @Override
+  
     public void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblBills.getModel();
         model.setRowCount(0);
@@ -64,7 +66,7 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         });
     }
 
-    @Override
+ 
     public void edit() {
         Bill entity = items.get(tblBills.getSelectedRow());
         this.setForm(entity);
@@ -72,12 +74,12 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         tabs.setSelectedIndex(1);
     }
 
-    @Override
+   
     public void checkAll() {
         this.setCheckedAll(true);
     }
 
-    @Override
+
     public void uncheckAll() {
         this.setCheckedAll(false);
     }
@@ -88,7 +90,7 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         }
     }
 
-    @Override
+    
     public void deleteCheckedItems() {
         if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
             for (int i = 0; i < tblBills.getRowCount(); i++) {
@@ -100,7 +102,7 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         }
     }
 
-    @Override
+  
     public void setForm(Bill entity) {
         txtId.setText(XStr.valueOf(entity.getId()));
         txtCardId.setText(XStr.valueOf(entity.getCardId()));
@@ -111,7 +113,7 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         this.fillBillDetails();
     }
 
-    @Override
+
     public Bill getForm() {
         Bill entity = new Bill();
         entity.setId(Long.valueOf(txtId.getText()));
@@ -122,8 +124,7 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         entity.setUsername(txtUsername.getText());
         return entity;
     }
-
-    @Override
+  
     public void create() {
         Bill entity = this.getForm();
         dao.create(entity);
@@ -131,14 +132,14 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         this.clear();
     }
 
-    @Override
+
     public void update() {
         Bill entity = this.getForm();
         dao.update(entity);
         this.fillToTable();
     }
 
-    @Override
+  
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
             Long id = Long.valueOf(txtId.getText());
@@ -148,13 +149,13 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         }
     }
 
-    @Override
+  
     public void clear() {
         this.setForm(new Bill());
         this.setEditable(false);
     }
 
-    @Override
+   
     public void setEditable(boolean editable) {
         txtId.setEnabled(!editable);
         btnCreate.setEnabled(!editable);
@@ -169,27 +170,27 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         btnMoveLast.setEnabled(editable && rowCount > 0);
     }
 
-    @Override
+   
     public void moveFirst() {
         this.moveTo(0);
     }
 
-    @Override
+  
     public void movePrevious() {
         this.moveTo(tblBills.getSelectedRow() - 1);
     }
 
-    @Override
+   
     public void moveNext() {
         this.moveTo(tblBills.getSelectedRow() + 1);
     }
 
-    @Override
+  
     public void moveLast() {
         this.moveTo(tblBills.getRowCount() - 1);
     }
 
-    @Override
+  
     public void moveTo(int index) {
         if (index < 0) {
             this.moveLast();
@@ -202,7 +203,7 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         }
     }
 
-    @Override
+ 
     public void fillBillDetails() {
         DefaultTableModel model = (DefaultTableModel) tblBillDetails.getModel();
         model.setRowCount(0);
@@ -226,7 +227,7 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         });
     }
 
-    @Override
+   
     public void selectTimeRange() {
         TimeRange range = TimeRange.today();
         switch (cboTimeRanges.getSelectedIndex()) {
@@ -692,14 +693,9 @@ public class BillManagerJDialog extends javax.swing.JDialog implements BillContr
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BillManagerJDialog dialog = new BillManagerJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+        BillManagerJDialog frame = new BillManagerJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }

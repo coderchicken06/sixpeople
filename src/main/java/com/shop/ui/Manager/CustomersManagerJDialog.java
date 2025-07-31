@@ -11,19 +11,21 @@ import com.shop.entity.Customers;
 import com.shop.util.XDate;
 import com.shop.util.XDialog;
 import com.shop.dao.CustomersDAO;
+import java.awt.Frame;
 import java.text.SimpleDateFormat;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class CustomersManagerJDialog extends javax.swing.JDialog implements CustomersController {
+public class CustomersManagerJDialog extends JFrame {
 
     /**
      * Creates new form UserJDialog
      */
-    public CustomersManagerJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public CustomersManagerJDialog(Frame parent) {
+        super("");
         initComponents();
     }
 
@@ -541,14 +543,9 @@ public class CustomersManagerJDialog extends javax.swing.JDialog implements Cust
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CustomersManagerJDialog dialog = new CustomersManagerJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+        CustomersManagerJDialog frame = new CustomersManagerJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }
@@ -596,14 +593,14 @@ public class CustomersManagerJDialog extends javax.swing.JDialog implements Cust
     CustomersDAO dao = new CustomersDAOImpl();
     List<Customers> items = List.of();
 
-    @Override
+  
     public void open() {
         this.setLocationRelativeTo(null);
         this.fillToTable();
         this.clear();
     }
 
-    @Override
+   
     public void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblKhachHang.getModel();
         model.setRowCount(0);
@@ -625,7 +622,7 @@ public class CustomersManagerJDialog extends javax.swing.JDialog implements Cust
         });
     }
 
-    @Override
+
     public void edit() {
         Customers entity = items.get(tblKhachHang.getSelectedRow());
         this.setForm(entity);
@@ -633,12 +630,11 @@ public class CustomersManagerJDialog extends javax.swing.JDialog implements Cust
         tabs.setSelectedIndex(1);
     }
 
-    @Override
     public void checkAll() {
         this.setCheckedAll(true);
     }
 
-    @Override
+  
     public void uncheckAll() {
         this.setCheckedAll(false);
     }
@@ -649,7 +645,6 @@ public class CustomersManagerJDialog extends javax.swing.JDialog implements Cust
         }
     }
 
-    @Override
     public void deleteCheckedItems() {
         if (XDialog.confirm("Bạn thực sự muốn xóa các khách hàng đã chọn?")) {
             for (int i = 0; i < tblKhachHang.getRowCount(); i++) {
@@ -663,7 +658,7 @@ public class CustomersManagerJDialog extends javax.swing.JDialog implements Cust
         }
     }
 
-    @Override
+   
     public void setForm(Customers entity) {
         txtMaKH.setText(String.valueOf(entity.getCustomerId()));
         txtTenKH.setText(entity.getFullname());
@@ -680,7 +675,7 @@ public class CustomersManagerJDialog extends javax.swing.JDialog implements Cust
         txtEmail.setText(entity.getEmail());
     }
 
-    @Override
+  
     public Customers getForm() {
         Customers entity = new Customers();
 
@@ -718,7 +713,7 @@ public class CustomersManagerJDialog extends javax.swing.JDialog implements Cust
         return entity;
     }
 
-    @Override
+    
     public void create() {
         Customers entity = this.getForm();
         dao.create(entity);
@@ -726,14 +721,14 @@ public class CustomersManagerJDialog extends javax.swing.JDialog implements Cust
         this.clear();
     }
 
-    @Override
+ 
     public void update() {
         Customers entity = this.getForm();
         dao.update(entity);
         this.fillToTable();
     }
 
-    @Override
+   
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
             String id = txtMaKH.getText();
@@ -743,13 +738,13 @@ public class CustomersManagerJDialog extends javax.swing.JDialog implements Cust
         }
     }
 
-    @Override
+  
     public void clear() {
         this.setForm(new Customers());
         this.setEditable(false);
     }
 
-    @Override
+    
     public void setEditable(boolean editable) {
         txtMaKH.setEnabled(!editable);
         btnCreate.setEnabled(!editable);
@@ -763,27 +758,26 @@ public class CustomersManagerJDialog extends javax.swing.JDialog implements Cust
         btnMoveLast.setEnabled(editable && rowCount > 0);
     }
 
-    @Override
     public void moveFirst() {
         this.moveTo(0);
     }
 
-    @Override
+    
     public void movePrevious() {
         this.moveTo(tblKhachHang.getSelectedRow() - 1);
     }
 
-    @Override
+   
     public void moveNext() {
         this.moveTo(tblKhachHang.getSelectedRow() + 1);
     }
 
-    @Override
+  
     public void moveLast() {
         this.moveTo(tblKhachHang.getRowCount() - 1);
     }
 
-    @Override
+ 
     public void moveTo(int index) {
         if (index < 0) {
             this.moveLast();

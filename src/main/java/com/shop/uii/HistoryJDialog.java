@@ -15,18 +15,19 @@ import com.shop.util.TimeRange;
 import com.shop.util.XAuth;
 import com.shop.util.XDate;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class HistoryJDialog extends javax.swing.JDialog implements HistoryController {
+public class HistoryJDialog extends JFrame {
 
     /**
      * Creates new form BillJDialog
      */
-    public HistoryJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public HistoryJDialog(Frame parent) {
+        super("Lich su");
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
@@ -207,14 +208,9 @@ public class HistoryJDialog extends javax.swing.JDialog implements HistoryContro
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                HistoryJDialog dialog = new HistoryJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+        BillJDialog frame = new BillJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }
@@ -235,14 +231,14 @@ public class HistoryJDialog extends javax.swing.JDialog implements HistoryContro
     BillDAO billDao = new BillDAOImpl();
     List<Bill> bills = List.of();
 
-    @Override
+    
     public void open() {
         this.setLocationRelativeTo(null);
         this.selectTimeRange();
         this.fillBills();
     }
 
-    @Override
+   
     public void fillBills() {
         Date begin = XDate.parse(txtBegin.getText());
         Date end = XDate.parse(txtEnd.getText());
@@ -264,7 +260,7 @@ public class HistoryJDialog extends javax.swing.JDialog implements HistoryContro
         });
     }
 
-    @Override
+   
     public void selectTimeRange() {
         TimeRange range = TimeRange.today();
         switch (cboTimeRanges.getSelectedIndex()) {
@@ -284,11 +280,11 @@ public class HistoryJDialog extends javax.swing.JDialog implements HistoryContro
         this.fillBills();
     }
 
-    @Override
+   
     public void showBillJDialog() {
         Bill bill = bills.get(tblBills.getSelectedRow());
 
-        BillJDialog dialog = new BillJDialog((Frame) this.getOwner(), true);
+        BillJDialog dialog = new BillJDialog((Frame) this.getOwner());
         dialog.setBill(bill);
         dialog.setVisible(true);
 
