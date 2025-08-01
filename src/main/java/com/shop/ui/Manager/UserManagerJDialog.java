@@ -11,6 +11,7 @@ import com.shop.dao.impl.UserDAOImpl;
 import com.shop.entity.User;
 import com.shop.util.XDialog;
 import java.awt.Frame;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -25,6 +26,7 @@ public class UserManagerJDialog extends JFrame {
     public UserManagerJDialog(Frame parent) {
         super("Nhân Viên");
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     UserDAO dao = new UserDAOImpl();

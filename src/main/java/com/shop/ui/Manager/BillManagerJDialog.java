@@ -17,6 +17,7 @@ import com.shop.util.XDate;
 import com.shop.util.XDialog;
 import com.shop.util.XStr;
 import java.awt.Frame;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -31,6 +32,7 @@ public class BillManagerJDialog extends JFrame {
     public BillManagerJDialog(Frame parent) {
         super("BIll");
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     BillDAO dao = new BillDAOImpl();

@@ -17,6 +17,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 import com.shop.uii.PolyShopController;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -31,6 +32,7 @@ public class RevenueManagerJDialog extends JFrame {
     public RevenueManagerJDialog(Frame parent) {
         super("doanh thu");
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
 
     }
 

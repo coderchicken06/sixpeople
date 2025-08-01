@@ -11,6 +11,7 @@ import com.shop.dao.impl.CategoryDAOImpl;
 import com.shop.entity.Category;
 import com.shop.util.XDialog;
 import java.awt.Frame;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -23,6 +24,7 @@ public class CategoryManagerJDialog extends JFrame {
         super();
         initComponents();
         setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     CategoryDAO dao = new CategoryDAOImpl();

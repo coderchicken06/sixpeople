@@ -11,6 +11,7 @@ import com.shop.dao.impl.CardDAOImpl;
 import com.shop.entity.Card;
 import com.shop.util.XDialog;
 import java.awt.Frame;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -25,6 +26,7 @@ public class CardManagerJDialog extends JFrame {
     public CardManagerJDialog(Frame parent) {
         super("");
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     CardDAO dao = new CardDAOImpl();

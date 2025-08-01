@@ -18,6 +18,7 @@ import com.shop.util.XDialog;
 import com.shop.util.XIcon;
 import com.shop.dao.SPDAO;
 import java.awt.Frame;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -32,6 +33,7 @@ public class SPManagerJDialog extends JFrame {
     public SPManagerJDialog(Frame parent) {
         super("");
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     SPDAO dao = new SPDAOImpl();

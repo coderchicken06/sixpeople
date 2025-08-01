@@ -5,6 +5,7 @@
 package com.shop.ui.Manager;
 
 import java.awt.Frame;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -19,6 +20,7 @@ public class Bill extends JFrame {
     public Bill(Frame parent) {
         super("");
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     /**

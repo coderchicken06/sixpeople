@@ -86,7 +86,7 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
         getContentPane().add(lblNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 70, 20));
         getContentPane().add(ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 420, 20));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Thêm tiêu đề.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Shop_logo.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 500, 490));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

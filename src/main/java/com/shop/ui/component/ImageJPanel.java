@@ -22,6 +22,7 @@ public class ImageJPanel extends javax.swing.JPanel {
      */
     public ImageJPanel() {
         initComponents();
+        
     }
 
     /**

@@ -13,6 +13,7 @@ import com.shop.util.XDialog;
 import com.shop.dao.CustomersDAO;
 import java.awt.Frame;
 import java.text.SimpleDateFormat;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -27,6 +28,7 @@ public class CustomersManagerJDialog extends JFrame {
     public CustomersManagerJDialog(Frame parent) {
         super("");
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     /**

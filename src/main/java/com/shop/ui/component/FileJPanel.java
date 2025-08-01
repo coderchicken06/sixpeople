@@ -22,6 +22,7 @@ public class FileJPanel extends javax.swing.JPanel {
      */
     public FileJPanel() {
         initComponents();
+        
     }
 
     /**
