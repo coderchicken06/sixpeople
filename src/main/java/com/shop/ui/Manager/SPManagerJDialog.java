@@ -10,20 +10,19 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import com.shop.dao.CategoryDAO;
+import com.shop.dao.SPDAO;
 import com.shop.dao.impl.CategoryDAOImpl;
 import com.shop.dao.impl.SPDAOImpl;
 import com.shop.entity.Category;
 import com.shop.entity.SP;
 import com.shop.util.XDialog;
 import com.shop.util.XIcon;
-import com.shop.dao.SPDAO;
 import java.awt.Frame;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
  *
- * @author Dung Si Ban Tron
+ * @author DELL
  */
 public class SPManagerJDialog extends JFrame {
 
@@ -33,7 +32,6 @@ public class SPManagerJDialog extends JFrame {
     public SPManagerJDialog(Frame parent) {
         super("");
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     SPDAO dao = new SPDAOImpl();
@@ -41,7 +39,7 @@ public class SPManagerJDialog extends JFrame {
 
     List<Category> categories = List.of();
 
-
+  
     public void open() {
         this.setLocationRelativeTo(null);
         this.fillCategories();
@@ -49,7 +47,7 @@ public class SPManagerJDialog extends JFrame {
         this.clear();
     }
 
-
+    
     public void fillCategories() {
         DefaultComboBoxModel cboModel = (DefaultComboBoxModel) cboCategories.getModel();
         cboModel.removeAllElements();
@@ -68,7 +66,7 @@ public class SPManagerJDialog extends JFrame {
         tblCategories.setRowSelectionInterval(0, 0);
     }
 
-
+   
     public void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblDrinks.getModel();
         model.setRowCount(0);
@@ -102,7 +100,7 @@ public class SPManagerJDialog extends JFrame {
         this.setCheckedAll(true);
     }
 
-
+ 
     public void uncheckAll() {
         this.setCheckedAll(false);
     }
@@ -113,48 +111,45 @@ public class SPManagerJDialog extends JFrame {
         }
     }
 
- 
+
     public void deleteCheckedItems() {
-        try {
-            if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
-                for (int i = 0; i < tblDrinks.getRowCount(); i++) {
-                    if ((Boolean) tblDrinks.getValueAt(i, 5)) {
-                        dao.deleteById(items.get(i).getId());
-                    }
+        if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
+            for (int i = 0; i < tblDrinks.getRowCount(); i++) {
+                if ((Boolean) tblDrinks.getValueAt(i, 5)) {
+                    dao.deleteById(items.get(i).getId());
                 }
-                this.fillToTable();
             }
-        } catch (RuntimeException e) {
-            XDialog.alert("Không thể xóa một số thẻ do có hóa đơn liên quan!");
+            this.fillToTable();
         }
     }
 
-
+  
     public void setForm(SP entity) {
         txtId.setText(entity.getId());
         txtName.setText(entity.getName());
         txtUnitPrice.setText(String.valueOf(entity.getUnitPrice()));
-//        sliDiscount.setValue((int) (entity.getDiscount() * 100));
-//        imgImage.setIcon(entity.getImage());
-//        rdoAvailable.setIndex(entity.isAvailable() ? 0 : 1);
+        sliDiscount.setValue((int) (entity.getDiscount() * 100));
+        imgImage.setIcon(entity.getImage());
+        rdoAvailable.setIndex(entity.isAvailable() ? 0 : 1);
         Category category = categories.get(tblCategories.getSelectedRow());
         cboCategories.setSelectedItem(category);
     }
 
-
+   
     public SP getForm() {
         SP entity = new SP();
         entity.setId(txtId.getText());
         entity.setName(txtName.getText());
-//        entity.setDiscount(sliDiscount.getValue() / 100.0);
-//        entity.setUnitPrice(Double.parseDouble(txtUnitPrice.getText()));
-//        entity.setImage(imgImage.getIcon());
-//        entity.setAvailable(rdoAvailable.getIndex() == 0);
+        entity.setDiscount(sliDiscount.getValue() / 100.0);
+        entity.setUnitPrice(Double.parseDouble(txtUnitPrice.getText()));
+        entity.setImage(imgImage.getIcon());
+        entity.setAvailable(rdoAvailable.getIndex() == 0);
         Category category = categories.get(cboCategories.getSelectedIndex());
         entity.setCategoryId(category.getId());
         return entity;
     }
 
+  
     public void create() {
         SP entity = this.getForm();
         dao.create(entity);
@@ -162,14 +157,14 @@ public class SPManagerJDialog extends JFrame {
         this.clear();
     }
 
-
+    
     public void update() {
         SP entity = this.getForm();
         dao.update(entity);
         this.fillToTable();
     }
 
-  
+    
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
             String id = txtId.getText();
@@ -179,12 +174,13 @@ public class SPManagerJDialog extends JFrame {
         }
     }
 
-   
+    
     public void clear() {
         this.setForm(new SP());
         this.setEditable(false);
     }
 
+    
     public void setEditable(boolean editable) {
         txtId.setEnabled(!editable);
         btnCreate.setEnabled(!editable);
@@ -198,12 +194,12 @@ public class SPManagerJDialog extends JFrame {
         btnMoveLast.setEnabled(editable && rowCount > 0);
     }
 
-
+    
     public void moveFirst() {
         this.moveTo(0);
     }
 
- 
+    
     public void movePrevious() {
         this.moveTo(tblDrinks.getSelectedRow() - 1);
     }
@@ -213,12 +209,12 @@ public class SPManagerJDialog extends JFrame {
         this.moveTo(tblDrinks.getSelectedRow() + 1);
     }
 
-  
+    
     public void moveLast() {
         this.moveTo(tblDrinks.getRowCount() - 1);
     }
 
-   
+    
     public void moveTo(int index) {
         if (index < 0) {
             this.moveLast();
@@ -231,6 +227,7 @@ public class SPManagerJDialog extends JFrame {
         }
     }
 
+    
     public void chooseFile() {
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
@@ -283,14 +280,17 @@ public class SPManagerJDialog extends JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtUnitPrice = new javax.swing.JTextField();
+        sliDiscount = new com.cafe.ui.component.SliderJPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         cboCategories = new javax.swing.JComboBox<>();
+        rdoAvailable = new com.cafe.ui.component.RadioJPanel();
+        imgImage = new com.cafe.ui.component.ImageJPanel();
 
         lblImage.setText("jLabel7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Quản Lý Quần Áo");
+        setTitle("Quản lý đồ uống");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -304,7 +304,7 @@ public class SPManagerJDialog extends JFrame {
 
             },
             new String [] {
-                "Mã Sản Phẩm", "Tên Sản Phẩm", "Đơn giá", "Giảm giá", "Trạng thái", ""
+                "Mã đồ uống", "Tên đồ uống", "Đơn giá", "Giảm giá", "Trạng thái", ""
             }
         ) {
             Class[] types = new Class [] {
@@ -375,7 +375,7 @@ public class SPManagerJDialog extends JFrame {
 
             },
             new String [] {
-                "Loại quần áo "
+                "Loại đồ uống"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -387,6 +387,7 @@ public class SPManagerJDialog extends JFrame {
             }
         });
         tblCategories.setRowHeight(26);
+        tblCategories.setRowMargin(2);
         tblCategories.setSelectionBackground(new java.awt.Color(204, 255, 204));
         tblCategories.setSelectionForeground(new java.awt.Color(255, 0, 0));
         tblCategories.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -399,7 +400,7 @@ public class SPManagerJDialog extends JFrame {
         });
         jScrollPane2.setViewportView(tblCategories);
 
-        jPanel1.add(jScrollPane2, java.awt.BorderLayout.PAGE_START);
+        jPanel1.add(jScrollPane2, java.awt.BorderLayout.LINE_START);
 
         tabs.addTab("DANH SÁCH", jPanel1);
 
@@ -484,11 +485,11 @@ public class SPManagerJDialog extends JFrame {
 
         jPanel6.setLayout(new java.awt.GridLayout(0, 2, 5, 5));
 
-        jLabel1.setText("Mã Sản Phẩm");
+        jLabel1.setText("Mã đồ uống");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jPanel6.add(jLabel1);
 
-        jLabel2.setText("Tên Sản Phẩm");
+        jLabel2.setText("Tên đồ uống");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jPanel6.add(jLabel2);
         jPanel6.add(txtId);
@@ -508,6 +509,7 @@ public class SPManagerJDialog extends JFrame {
             }
         });
         jPanel6.add(txtUnitPrice);
+        jPanel6.add(sliDiscount);
 
         jLabel5.setText("Loại");
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -524,12 +526,17 @@ public class SPManagerJDialog extends JFrame {
         });
         jPanel6.add(cboCategories);
 
+        rdoAvailable.setItems(new String[] {"Sẵn có", "Hết hàng"});
+        jPanel6.add(rdoAvailable);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(181, 181, 181)
+                .addContainerGap()
+                .addComponent(imgImage, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -537,8 +544,10 @@ public class SPManagerJDialog extends JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imgImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -558,7 +567,8 @@ public class SPManagerJDialog extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE))
+                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -701,6 +711,102 @@ public class SPManagerJDialog extends JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -726,6 +832,7 @@ public class SPManagerJDialog extends JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cboCategories;
     private javax.swing.JFileChooser fileChooser;
+    private com.cafe.ui.component.ImageJPanel imgImage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -744,6 +851,8 @@ public class SPManagerJDialog extends JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblImage;
+    private com.cafe.ui.component.RadioJPanel rdoAvailable;
+    private com.cafe.ui.component.SliderJPanel sliDiscount;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JTable tblCategories;
     private javax.swing.JTable tblDrinks;

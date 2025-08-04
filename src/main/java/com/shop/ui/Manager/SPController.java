@@ -8,7 +8,7 @@ import com.shop.entity.SP;
 
 /**
  *
- * @author Dung Si Ban Tron
+ * @author Duy Phuong
  */
 public interface SPController extends CrudController<SP>{
     void fillCategories();

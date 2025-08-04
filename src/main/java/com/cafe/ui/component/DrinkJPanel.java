@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.shop.ui.component;
+package com.cafe.ui.component;
 
 import java.util.function.Consumer;
 import lombok.Setter;
@@ -11,14 +11,14 @@ import com.shop.util.XIcon;
 
 /**
  *
- * @author Dung Si Ban Tron
+ * @author DELL
  */
-public class SPJPanel extends javax.swing.JPanel {
+public class DrinkJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form DrinkJPanel
      */
-    public SPJPanel() {
+    public DrinkJPanel() {
         initComponents();
     }
 
@@ -74,7 +74,7 @@ public class SPJPanel extends javax.swing.JPanel {
     private void lblImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImageMouseClicked
         // TODO add your handling code here:
         if(imageClicked != null){
-            this.imageClicked.accept(drink);
+            this.imageClicked.accept(sp);
         }
     }//GEN-LAST:event_lblImageMouseClicked
 
@@ -87,7 +87,7 @@ public class SPJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblUnitPrice;
     // End of variables declaration//GEN-END:variables
 
-    private SP drink;
+    private SP sp;
     @Setter
     int width = 100;
     @Setter
@@ -96,15 +96,15 @@ public class SPJPanel extends javax.swing.JPanel {
     @Setter
     Consumer<SP> imageClicked;
 
-    public void setDrink(SP drink) {
-        this.drink = drink;
-        lblName.setText(drink.getName());
-        lblUnitPrice.setText(String.format("%.1f", drink.getUnitPrice()*(1-drink.getDiscount())));
+    public void setDrink(SP sp) {
+        this.sp = sp;
+        lblName.setText(sp.getName());
+        lblUnitPrice.setText(String.format("%.1f", sp.getUnitPrice()*(1-sp.getDiscount())));
         lblImage.setText("");
-        lblImage.setIcon(XIcon.getIcon("images/" + drink.getImage(), width, height));
+        lblImage.setIcon(XIcon.getIcon("images/" + sp.getImage(), width, height));
     }
     
     public SP getDrink(){
-        return this.drink;
+        return this.sp;
     }
 }

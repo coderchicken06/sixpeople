@@ -11,12 +11,11 @@ import com.shop.dao.impl.UserDAOImpl;
 import com.shop.entity.User;
 import com.shop.util.XDialog;
 import java.awt.Frame;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
  *
- * @author Dung Si Ban Tron
+ * @author DELL
  */
 public class UserManagerJDialog extends JFrame {
 
@@ -24,24 +23,23 @@ public class UserManagerJDialog extends JFrame {
      * Creates new form UserJDialog
      */
     public UserManagerJDialog(Frame parent) {
-        super("Nhân Viên");
+        super("");
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     UserDAO dao = new UserDAOImpl();
     List<User> items = List.of();
 
-  
+    
     public void open() {
         this.setLocationRelativeTo(null);
         this.fillToTable();
         this.clear();
     }
 
-   
+    
     public void fillToTable() {
-        DefaultTableModel model = (DefaultTableModel) tblUsers.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
         items = dao.findAll();
@@ -59,9 +57,9 @@ public class UserManagerJDialog extends JFrame {
         });
     }
 
-   
+    
     public void edit() {
-        User entity = items.get(tblUsers.getSelectedRow());
+        User entity = items.get(jTable1.getSelectedRow());
         this.setForm(entity);
         this.setEditable(true);
         tabs.setSelectedIndex(1);
@@ -78,54 +76,50 @@ public class UserManagerJDialog extends JFrame {
     }
 
     private void setCheckedAll(boolean checked) {
-        for (int i = 0; i < tblUsers.getRowCount(); i++) {
-            tblUsers.setValueAt(checked, i, 6);
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            jTable1.setValueAt(checked, i, 6);
         }
     }
 
     
     public void deleteCheckedItems() {
-        try {
-            if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
-                for (int i = 0; i < tblUsers.getRowCount(); i++) {
-                    if ((Boolean) tblUsers.getValueAt(i, 6)) {
-                        dao.deleteById(items.get(i).getUsername());
-                    }
+        if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
+            for (int i = 0; i < jTable1.getRowCount(); i++) {
+                if ((Boolean) jTable1.getValueAt(i, 6)) {
+                    dao.deleteById(items.get(i).getUsername());
                 }
-                this.fillToTable();
             }
-        } catch (RuntimeException e) {
-            XDialog.alert("Không thể xóa một số tài khoản do có hóa đơn liên quan!");
+            this.fillToTable();
         }
     }
 
-  
+    
     public void setForm(User entity) {
-        txtUsername.setText(entity.getUsername());
-        txtPassword.setText(entity.getPassword());
-        txtConfirm.setText(entity.getPassword());
-//        rdoEnabled.setIndex(entity.isEnabled() ? 0 : 1);
-//        txtFullname.setText(entity.getFullname());
-//        pnlPhoto.setPreferredSize(new java.awt.Dimension(169, 169));
-//        pnlPhoto.setIcon("/icons/" + entity.getPhoto());
-//        pnlPhoto.revalidate();
-//        pnlPhoto.repaint();
-//        rdoManager.setIndex(entity.isManager() ? 0 : 1);
+        txtUsername4.setText(entity.getUsername());
+        txtPassword4.setText(entity.getPassword());
+        txtConfirm4.setText(entity.getPassword());
+        rdoEnabled4.setIndex(entity.isEnabled() ? 0 : 1);
+        txtFullname4.setText(entity.getFullname());
+        pnlPhoto4.setPreferredSize(new java.awt.Dimension(169, 169));
+        pnlPhoto4.setIcon("/icons/" + entity.getPhoto());
+        pnlPhoto4.revalidate();
+        pnlPhoto4.repaint();
+        rdoManager4.setIndex(entity.isManager() ? 0 : 1);
     }
 
-   
+    
     public User getForm() {
         User entity = new User();
-        entity.setUsername(txtUsername.getText());
-        entity.setPassword(new String(txtPassword.getPassword()));
-//        entity.setEnabled(rdoEnabled.getIndex() == 0);
-//        entity.setFullname(txtFullname.getText());
-//        entity.setPhoto(pnlPhoto.getIcon());
-//        entity.setManager(rdoManager.getIndex() == 0);
+        entity.setUsername(txtUsername4.getText());
+        entity.setPassword(new String(txtPassword4.getPassword()));
+        entity.setEnabled(rdoEnabled4.getIndex() == 0);
+        entity.setFullname(txtFullname4.getText());
+        entity.setPhoto(pnlPhoto4.getIcon());
+        entity.setManager(rdoManager4.getIndex() == 0);
         return entity;
     }
 
-  
+    
     public void create() {
         User entity = this.getForm();
         dao.create(entity);
@@ -133,71 +127,72 @@ public class UserManagerJDialog extends JFrame {
         this.clear();
     }
 
-
+    
     public void update() {
         User entity = this.getForm();
         dao.update(entity);
         this.fillToTable();
     }
 
-   
+    
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
-            String id = txtUsername.getText();
+            String id = txtUsername4.getText();
             dao.deleteById(id);
             this.fillToTable();
             this.clear();
         }
     }
 
-   
+    
     public void clear() {
         this.setForm(new User());
         this.setEditable(false);
     }
 
- 
+    
     public void setEditable(boolean editable) {
-        txtUsername.setEnabled(!editable);
-        btnCreate.setEnabled(!editable);
-        btnUpdate.setEnabled(editable);
-        btnDelete.setEnabled(editable);
+        txtUsername4.setEnabled(!editable);
+        btnCreate1.setEnabled(!editable);
+        btnUpdate1.setEnabled(editable);
+        btnDelete1.setEnabled(editable);
 
-        int rowCount = tblUsers.getRowCount();
-        btnMoveFirst.setEnabled(editable && rowCount > 0);
-        btnMovePrevious.setEnabled(editable && rowCount > 0);
-        btnMoveNext.setEnabled(editable && rowCount > 0);
-        btnMoveLast.setEnabled(editable && rowCount > 0);
+        int rowCount = jTable1.getRowCount();
+        btnMoveFirst1.setEnabled(editable && rowCount > 0);
+        btnMovePrevious1.setEnabled(editable && rowCount > 0);
+        btnMoveNext1.setEnabled(editable && rowCount > 0);
+        btnMoveLast1.setEnabled(editable && rowCount > 0);
     }
 
-   
+    
     public void moveFirst() {
         this.moveTo(0);
     }
 
-  
+    
     public void movePrevious() {
-        this.moveTo(tblUsers.getSelectedRow() - 1);
+        this.moveTo(jTable1.getSelectedRow() - 1);
     }
 
-  
+    
     public void moveNext() {
-        this.moveTo(tblUsers.getSelectedRow() + 1);
+        this.moveTo(jTable1.getSelectedRow() + 1);
     }
 
-  
+    
     public void moveLast() {
-        this.moveTo(tblUsers.getRowCount() - 1);
+        this.moveTo(jTable1.getRowCount() - 1);
     }
 
+    
     public void moveTo(int index) {
         if (index < 0) {
             this.moveLast();
-        } else if (index >= tblUsers.getRowCount()) {
+        } else if (index >= jTable1.getRowCount()) {
             this.moveFirst();
         } else {
-            tblUsers.clearSelection();
-            tblUsers.setRowSelectionInterval(index, index);
+            jTable1.clearSelection();
+            jTable1.setRowSelectionInterval(index, index);
             this.edit();
         }
     }
@@ -211,39 +206,81 @@ public class UserManagerJDialog extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        imageJPanel1 = new com.cafe.ui.component.ImageJPanel();
+        jPanel22 = new javax.swing.JPanel();
+        btnCheckAll2 = new javax.swing.JButton();
+        btnUncheckAll2 = new javax.swing.JButton();
+        btnDeleteCheckedItems2 = new javax.swing.JButton();
         tabs = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblUsers = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnCheckAll = new javax.swing.JButton();
         btnUncheckAll = new javax.swing.JButton();
         btnDeleteCheckedItems = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        btnCreate = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnClear = new javax.swing.JButton();
-        jPanel8 = new javax.swing.JPanel();
-        btnMoveFirst = new javax.swing.JButton();
-        btnMovePrevious = new javax.swing.JButton();
-        btnMoveNext = new javax.swing.JButton();
-        btnMoveLast = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        txtFullname = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
-        txtConfirm = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        btnCreate1 = new javax.swing.JButton();
+        btnUpdate1 = new javax.swing.JButton();
+        btnDelete1 = new javax.swing.JButton();
+        btnClear1 = new javax.swing.JButton();
+        jPanel17 = new javax.swing.JPanel();
+        btnMoveFirst1 = new javax.swing.JButton();
+        btnMovePrevious1 = new javax.swing.JButton();
+        btnMoveNext1 = new javax.swing.JButton();
+        btnMoveLast1 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jPanel18 = new javax.swing.JPanel();
+        jPanel19 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        txtUsername4 = new javax.swing.JTextField();
+        txtFullname4 = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        txtPassword4 = new javax.swing.JPasswordField();
+        txtConfirm4 = new javax.swing.JPasswordField();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        rdoManager4 = new com.cafe.ui.component.RadioJPanel();
+        rdoEnabled4 = new com.cafe.ui.component.RadioJPanel();
+        pnlPhoto4 = new com.cafe.ui.component.ImageJPanel();
+        jPanel20 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jPanel21 = new javax.swing.JPanel();
+        btnCheckAll1 = new javax.swing.JButton();
+        btnUncheckAll1 = new javax.swing.JButton();
+        btnDeleteCheckedItems1 = new javax.swing.JButton();
+        jPanel23 = new javax.swing.JPanel();
+        btnCheckAll3 = new javax.swing.JButton();
+        btnUncheckAll3 = new javax.swing.JButton();
+        btnDeleteCheckedItems3 = new javax.swing.JButton();
+
+        jPanel22.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 2, 2));
+
+        btnCheckAll2.setText("Chọn tất cả");
+        btnCheckAll2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckAll2ActionPerformed(evt);
+            }
+        });
+        jPanel22.add(btnCheckAll2);
+
+        btnUncheckAll2.setText("Bỏ chọn tất cả");
+        btnUncheckAll2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUncheckAll2ActionPerformed(evt);
+            }
+        });
+        jPanel22.add(btnUncheckAll2);
+
+        btnDeleteCheckedItems2.setText("Xóa các mục chọn");
+        btnDeleteCheckedItems2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCheckedItems2ActionPerformed(evt);
+            }
+        });
+        jPanel22.add(btnDeleteCheckedItems2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Quản lý tài khoản");
@@ -254,45 +291,6 @@ public class UserManagerJDialog extends JFrame {
         });
 
         jPanel1.setLayout(new java.awt.BorderLayout(0, 5));
-
-        tblUsers.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Tên đăng nhập", "Mật khẩu", "Họ và tên", "Hình ảnh", "Vai trò", "Trạng thái", ""
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblUsers.setRowHeight(25);
-        tblUsers.setRowMargin(1);
-        tblUsers.setSelectionBackground(new java.awt.Color(255, 255, 0));
-        tblUsers.setSelectionForeground(new java.awt.Color(255, 0, 0));
-        tblUsers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tblUsers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tblUsers.setShowGrid(true);
-        tblUsers.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblUsersMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblUsers);
-
-        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 2, 2));
 
@@ -322,137 +320,226 @@ public class UserManagerJDialog extends JFrame {
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        tabs.addTab("DANH SÁCH", jPanel1);
+        jPanel9.setLayout(new java.awt.BorderLayout(0, 5));
 
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        jPanel16.setLayout(new java.awt.GridLayout(1, 0, 2, 2));
 
-        jPanel4.setLayout(new java.awt.BorderLayout(0, 5));
-
-        jPanel7.setLayout(new java.awt.GridLayout(1, 0, 2, 2));
-
-        btnCreate.setText("Tạo mới");
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+        btnCreate1.setText("Tạo mới");
+        btnCreate1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
+                btnCreate1ActionPerformed(evt);
             }
         });
-        jPanel7.add(btnCreate);
+        jPanel16.add(btnCreate1);
 
-        btnUpdate.setText("Cập nhật");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate1.setText("Cập nhật");
+        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnUpdate1ActionPerformed(evt);
             }
         });
-        jPanel7.add(btnUpdate);
+        jPanel16.add(btnUpdate1);
 
-        btnDelete.setText("Xóa");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete1.setText("Xóa");
+        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnDelete1ActionPerformed(evt);
             }
         });
-        jPanel7.add(btnDelete);
+        jPanel16.add(btnDelete1);
 
-        btnClear.setText("Nhập mới");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
+        btnClear1.setText("Nhập mới");
+        btnClear1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
+                btnClear1ActionPerformed(evt);
             }
         });
-        jPanel7.add(btnClear);
+        jPanel16.add(btnClear1);
 
-        jPanel4.add(jPanel7, java.awt.BorderLayout.LINE_START);
+        jPanel9.add(jPanel16, java.awt.BorderLayout.LINE_START);
 
-        jPanel8.setLayout(new java.awt.GridLayout(1, 0, 2, 2));
+        jPanel17.setLayout(new java.awt.GridLayout(1, 0, 2, 2));
 
-        btnMoveFirst.setText("|<");
-        btnMoveFirst.addActionListener(new java.awt.event.ActionListener() {
+        btnMoveFirst1.setText("|<");
+        btnMoveFirst1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveFirstActionPerformed(evt);
+                btnMoveFirst1ActionPerformed(evt);
             }
         });
-        jPanel8.add(btnMoveFirst);
+        jPanel17.add(btnMoveFirst1);
 
-        btnMovePrevious.setText("<<");
-        btnMovePrevious.addActionListener(new java.awt.event.ActionListener() {
+        btnMovePrevious1.setText("<<");
+        btnMovePrevious1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMovePreviousActionPerformed(evt);
+                btnMovePrevious1ActionPerformed(evt);
             }
         });
-        jPanel8.add(btnMovePrevious);
+        jPanel17.add(btnMovePrevious1);
 
-        btnMoveNext.setText(">>");
-        btnMoveNext.addActionListener(new java.awt.event.ActionListener() {
+        btnMoveNext1.setText(">>");
+        btnMoveNext1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveNextActionPerformed(evt);
+                btnMoveNext1ActionPerformed(evt);
             }
         });
-        jPanel8.add(btnMoveNext);
+        jPanel17.add(btnMoveNext1);
 
-        btnMoveLast.setText(">|");
-        btnMoveLast.addActionListener(new java.awt.event.ActionListener() {
+        btnMoveLast1.setText(">|");
+        btnMoveLast1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveLastActionPerformed(evt);
+                btnMoveLast1ActionPerformed(evt);
             }
         });
-        jPanel8.add(btnMoveLast);
+        jPanel17.add(btnMoveLast1);
 
-        jPanel4.add(jPanel8, java.awt.BorderLayout.LINE_END);
-        jPanel4.add(jSeparator1, java.awt.BorderLayout.PAGE_START);
+        jPanel9.add(jPanel17, java.awt.BorderLayout.LINE_END);
+        jPanel9.add(jSeparator2, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.add(jPanel4, java.awt.BorderLayout.PAGE_END);
+        jPanel1.add(jPanel9, java.awt.BorderLayout.PAGE_END);
 
-        jPanel6.setLayout(new java.awt.GridLayout(0, 2, 5, 5));
+        jPanel19.setLayout(new java.awt.GridLayout(0, 2, 5, 5));
 
-        jLabel1.setText("Tên đăng nhập");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jPanel6.add(jLabel1);
+        jLabel25.setText("Tên đăng nhập");
+        jLabel25.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jPanel19.add(jLabel25);
 
-        jLabel2.setText("Họ và tên");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jPanel6.add(jLabel2);
-        jPanel6.add(txtUsername);
-        jPanel6.add(txtFullname);
+        jLabel26.setText("Họ và tên");
+        jLabel26.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jPanel19.add(jLabel26);
+        jPanel19.add(txtUsername4);
+        jPanel19.add(txtFullname4);
 
-        jLabel3.setText("Mật khẩu");
-        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jPanel6.add(jLabel3);
+        jLabel27.setText("Mật khẩu");
+        jLabel27.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jPanel19.add(jLabel27);
 
-        jLabel4.setText("Xác nhận mật khẩu");
-        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jPanel6.add(jLabel4);
-        jPanel6.add(txtPassword);
-        jPanel6.add(txtConfirm);
+        jLabel28.setText("Xác nhận mật khẩu");
+        jLabel28.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jPanel19.add(jLabel28);
+        jPanel19.add(txtPassword4);
+        jPanel19.add(txtConfirm4);
 
-        jLabel5.setText("Vai trò");
-        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jPanel6.add(jLabel5);
+        jLabel29.setText("Vai trò");
+        jLabel29.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jPanel19.add(jLabel29);
 
-        jLabel6.setText("Trạng thái");
-        jLabel6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jPanel6.add(jLabel6);
+        jLabel30.setText("Trạng thái");
+        jLabel30.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jPanel19.add(jLabel30);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(181, 181, 181)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+        rdoManager4.setItems(new String[] {"Quản lý", "Nhân viên"});
+        jPanel19.add(rdoManager4);
+
+        rdoEnabled4.setItems(new String[] {"Hoạt động", "Tạm dừng"});
+        jPanel19.add(rdoEnabled4);
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlPhoto4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlPhoto4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel5, java.awt.BorderLayout.CENTER);
+        jPanel1.add(jPanel18, java.awt.BorderLayout.PAGE_START);
 
-        tabs.addTab("BIỂU MẪU", jPanel2);
+        tabs.addTab("DANH SÁCH", jPanel1);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tabs.addTab("tab2", jPanel20);
+
+        jPanel21.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 2, 2));
+
+        btnCheckAll1.setText("Chọn tất cả");
+        btnCheckAll1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckAll1ActionPerformed(evt);
+            }
+        });
+        jPanel21.add(btnCheckAll1);
+
+        btnUncheckAll1.setText("Bỏ chọn tất cả");
+        btnUncheckAll1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUncheckAll1ActionPerformed(evt);
+            }
+        });
+        jPanel21.add(btnUncheckAll1);
+
+        btnDeleteCheckedItems1.setText("Xóa các mục chọn");
+        btnDeleteCheckedItems1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCheckedItems1ActionPerformed(evt);
+            }
+        });
+        jPanel21.add(btnDeleteCheckedItems1);
+
+        jPanel23.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 2, 2));
+
+        btnCheckAll3.setText("Chọn tất cả");
+        btnCheckAll3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckAll3ActionPerformed(evt);
+            }
+        });
+        jPanel23.add(btnCheckAll3);
+
+        btnUncheckAll3.setText("Bỏ chọn tất cả");
+        btnUncheckAll3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUncheckAll3ActionPerformed(evt);
+            }
+        });
+        jPanel23.add(btnUncheckAll3);
+
+        btnDeleteCheckedItems3.setText("Xóa các mục chọn");
+        btnDeleteCheckedItems3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCheckedItems3ActionPerformed(evt);
+            }
+        });
+        jPanel23.add(btnDeleteCheckedItems3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -462,13 +549,33 @@ public class UserManagerJDialog extends JFrame {
                 .addContainerGap()
                 .addComponent(tabs)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(414, Short.MAX_VALUE)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(415, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(200, Short.MAX_VALUE)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(200, Short.MAX_VALUE)))
         );
 
         pack();
@@ -479,67 +586,88 @@ public class UserManagerJDialog extends JFrame {
         this.open();
     }//GEN-LAST:event_formWindowOpened
 
-    private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
+    private void btnMoveLast1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveLast1ActionPerformed
         // TODO add your handling code here:
-        if (evt.getClickCount() == 2) {
-            this.edit();
-        }
-    }//GEN-LAST:event_tblUsersMouseClicked
+    }//GEN-LAST:event_btnMoveLast1ActionPerformed
 
-    private void btnCheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckAllActionPerformed
+    private void btnMoveNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNext1ActionPerformed
         // TODO add your handling code here:
-        this.checkAll();
-    }//GEN-LAST:event_btnCheckAllActionPerformed
+    }//GEN-LAST:event_btnMoveNext1ActionPerformed
 
-    private void btnUncheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUncheckAllActionPerformed
+    private void btnMovePrevious1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovePrevious1ActionPerformed
         // TODO add your handling code here:
-        this.uncheckAll();
-    }//GEN-LAST:event_btnUncheckAllActionPerformed
+    }//GEN-LAST:event_btnMovePrevious1ActionPerformed
+
+    private void btnMoveFirst1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveFirst1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMoveFirst1ActionPerformed
+
+    private void btnClear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClear1ActionPerformed
+
+    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDelete1ActionPerformed
+
+    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdate1ActionPerformed
+
+    private void btnCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCreate1ActionPerformed
 
     private void btnDeleteCheckedItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCheckedItemsActionPerformed
         // TODO add your handling code here:
         this.deleteCheckedItems();
     }//GEN-LAST:event_btnDeleteCheckedItemsActionPerformed
 
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+    private void btnUncheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUncheckAllActionPerformed
         // TODO add your handling code here:
-        this.create();
-    }//GEN-LAST:event_btnCreateActionPerformed
+        this.uncheckAll();
+    }//GEN-LAST:event_btnUncheckAllActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnCheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckAllActionPerformed
         // TODO add your handling code here:
-        this.update();
-    }//GEN-LAST:event_btnUpdateActionPerformed
+        this.checkAll();
+    }//GEN-LAST:event_btnCheckAllActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnCheckAll1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckAll1ActionPerformed
         // TODO add your handling code here:
-        this.delete();
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btnCheckAll1ActionPerformed
 
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+    private void btnUncheckAll1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUncheckAll1ActionPerformed
         // TODO add your handling code here:
-        this.clear();
-    }//GEN-LAST:event_btnClearActionPerformed
+    }//GEN-LAST:event_btnUncheckAll1ActionPerformed
 
-    private void btnMoveFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveFirstActionPerformed
+    private void btnDeleteCheckedItems1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCheckedItems1ActionPerformed
         // TODO add your handling code here:
-        this.moveFirst();
-    }//GEN-LAST:event_btnMoveFirstActionPerformed
+    }//GEN-LAST:event_btnDeleteCheckedItems1ActionPerformed
 
-    private void btnMovePreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovePreviousActionPerformed
+    private void btnCheckAll2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckAll2ActionPerformed
         // TODO add your handling code here:
-        this.movePrevious();
-    }//GEN-LAST:event_btnMovePreviousActionPerformed
+    }//GEN-LAST:event_btnCheckAll2ActionPerformed
 
-    private void btnMoveNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNextActionPerformed
+    private void btnUncheckAll2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUncheckAll2ActionPerformed
         // TODO add your handling code here:
-        this.moveNext();
-    }//GEN-LAST:event_btnMoveNextActionPerformed
+    }//GEN-LAST:event_btnUncheckAll2ActionPerformed
 
-    private void btnMoveLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveLastActionPerformed
+    private void btnDeleteCheckedItems2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCheckedItems2ActionPerformed
         // TODO add your handling code here:
-        this.moveLast();
-    }//GEN-LAST:event_btnMoveLastActionPerformed
+    }//GEN-LAST:event_btnDeleteCheckedItems2ActionPerformed
+
+    private void btnCheckAll3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckAll3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCheckAll3ActionPerformed
+
+    private void btnUncheckAll3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUncheckAll3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUncheckAll3ActionPerformed
+
+    private void btnDeleteCheckedItems3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCheckedItems3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteCheckedItems3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -574,6 +702,30 @@ public class UserManagerJDialog extends JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -587,38 +739,54 @@ public class UserManagerJDialog extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCheckAll;
-    private javax.swing.JButton btnClear;
-    private javax.swing.JButton btnCreate;
-    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnCheckAll1;
+    private javax.swing.JButton btnCheckAll2;
+    private javax.swing.JButton btnCheckAll3;
+    private javax.swing.JButton btnClear1;
+    private javax.swing.JButton btnCreate1;
+    private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnDeleteCheckedItems;
-    private javax.swing.JButton btnMoveFirst;
-    private javax.swing.JButton btnMoveLast;
-    private javax.swing.JButton btnMoveNext;
-    private javax.swing.JButton btnMovePrevious;
+    private javax.swing.JButton btnDeleteCheckedItems1;
+    private javax.swing.JButton btnDeleteCheckedItems2;
+    private javax.swing.JButton btnDeleteCheckedItems3;
+    private javax.swing.JButton btnMoveFirst1;
+    private javax.swing.JButton btnMoveLast1;
+    private javax.swing.JButton btnMoveNext1;
+    private javax.swing.JButton btnMovePrevious1;
     private javax.swing.JButton btnUncheckAll;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton btnUncheckAll1;
+    private javax.swing.JButton btnUncheckAll2;
+    private javax.swing.JButton btnUncheckAll3;
+    private javax.swing.JButton btnUpdate1;
+    private com.cafe.ui.component.ImageJPanel imageJPanel1;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTable jTable1;
+    private com.cafe.ui.component.ImageJPanel pnlPhoto4;
+    private com.cafe.ui.component.RadioJPanel rdoEnabled4;
+    private com.cafe.ui.component.RadioJPanel rdoManager4;
     private javax.swing.JTabbedPane tabs;
-    private javax.swing.JTable tblUsers;
-    private javax.swing.JPasswordField txtConfirm;
-    private javax.swing.JTextField txtFullname;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JPasswordField txtConfirm4;
+    private javax.swing.JTextField txtFullname4;
+    private javax.swing.JPasswordField txtPassword4;
+    private javax.swing.JTextField txtUsername4;
     // End of variables declaration//GEN-END:variables
 
 }

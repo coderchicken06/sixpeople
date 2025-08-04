@@ -11,12 +11,11 @@ import com.shop.dao.impl.CardDAOImpl;
 import com.shop.entity.Card;
 import com.shop.util.XDialog;
 import java.awt.Frame;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
  *
- * @author Dung Si Ban Tron
+ * @author Duy Phuong
  */
 public class CardManagerJDialog extends JFrame {
 
@@ -26,20 +25,19 @@ public class CardManagerJDialog extends JFrame {
     public CardManagerJDialog(Frame parent) {
         super("");
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
 
     CardDAO dao = new CardDAOImpl();
     List<Card> items = List.of();
 
- 
+   
     public void open() {
         this.setLocationRelativeTo(null);
         this.fillToTable();
         this.clear();
     }
 
-
+    
     public void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblCards.getModel();
         model.setRowCount(0);
@@ -55,7 +53,7 @@ public class CardManagerJDialog extends JFrame {
         });
     }
 
-
+   
     public void edit() {
         Card entity = items.get(tblCards.getSelectedRow());
         this.setForm(entity);
@@ -63,10 +61,12 @@ public class CardManagerJDialog extends JFrame {
         tabs.setSelectedIndex(1);
     }
 
+   
     public void checkAll() {
         this.setCheckedAll(true);
     }
 
+ 
     public void uncheckAll() {
         this.setCheckedAll(false);
     }
@@ -79,35 +79,30 @@ public class CardManagerJDialog extends JFrame {
 
    
     public void deleteCheckedItems() {
-        try {
-            if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
-                for (int i = 0; i < tblCards.getRowCount(); i++) {
-                    if ((Boolean) tblCards.getValueAt(i, 2)) {
-                        dao.deleteById(items.get(i).getId());
-                    }
+        if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
+            for (int i = 0; i < tblCards.getRowCount(); i++) {
+                if ((Boolean) tblCards.getValueAt(i, 2)) {
+                    dao.deleteById(items.get(i).getId());
                 }
-                this.fillToTable();
             }
-        } catch (RuntimeException e) {
-            XDialog.alert("Không thể xóa một số thẻ do có hóa đơn liên quan!");
+            this.fillToTable();
         }
     }
 
    
     public void setForm(Card entity) {
         txtId.setText(String.valueOf(entity.getId()));
-//        rdoStatus.setIndex(entity.getStatus());
+        rdoStatus.setIndex(entity.getStatus());
     }
 
-
+    
     public Card getForm() {
         Card entity = new Card();
         entity.setId(Integer.valueOf(txtId.getText()));
-//        entity.setStatus(rdoStatus.getIndex());
+        entity.setStatus(rdoStatus.getIndex());
         return entity;
     }
 
-   
     public void create() {
         Card entity = this.getForm();
         dao.create(entity);
@@ -117,14 +112,9 @@ public class CardManagerJDialog extends JFrame {
 
    
     public void update() {
-        try {
-            Card entity = this.getForm();
-            dao.update(entity);
-            this.fillToTable();
-            XDialog.alert("Cập nhật trạng thái thẻ thành công!");
-        } catch (RuntimeException e) {
-            XDialog.alert("Lỗi khi cập nhật thẻ: " + e.getMessage());
-        }
+        Card entity = this.getForm();
+        dao.update(entity);
+        this.fillToTable();
     }
 
    
@@ -137,7 +127,7 @@ public class CardManagerJDialog extends JFrame {
         }
     }
 
-   
+  
     public void clear() {
         this.setForm(new Card());
         this.setEditable(false);
@@ -157,27 +147,26 @@ public class CardManagerJDialog extends JFrame {
         btnMoveLast.setEnabled(editable && rowCount > 0);
     }
 
-   
+    
     public void moveFirst() {
         this.moveTo(0);
     }
 
-    
+   
     public void movePrevious() {
         this.moveTo(tblCards.getSelectedRow() - 1);
     }
 
-   
     public void moveNext() {
         this.moveTo(tblCards.getSelectedRow() + 1);
     }
 
-    
+   
     public void moveLast() {
         this.moveTo(tblCards.getRowCount() - 1);
     }
 
-  
+    
     public void moveTo(int index) {
         if (index < 0) {
             this.moveLast();
@@ -225,6 +214,7 @@ public class CardManagerJDialog extends JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        rdoStatus = new com.cafe.ui.component.RadioJPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Quản lý thẻ định danh");
@@ -395,13 +385,17 @@ public class CardManagerJDialog extends JFrame {
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jPanel6.add(jLabel2);
 
+        rdoStatus.setItems(new String[] {"Operating", "Error", "Lose"});
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
+                    .addComponent(rdoStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -409,7 +403,9 @@ public class CardManagerJDialog extends JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdoStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -459,6 +455,7 @@ public class CardManagerJDialog extends JFrame {
     }//GEN-LAST:event_btnUncheckAllActionPerformed
 
     private void btnDeleteCheckedItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCheckedItemsActionPerformed
+        // TODO add your handling code here:
         this.deleteCheckedItems();
     }//GEN-LAST:event_btnDeleteCheckedItemsActionPerformed
 
@@ -535,6 +532,30 @@ public class CardManagerJDialog extends JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -570,6 +591,7 @@ public class CardManagerJDialog extends JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private com.cafe.ui.component.RadioJPanel rdoStatus;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JTable tblCards;
     private javax.swing.JTextField txtId;
