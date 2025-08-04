@@ -262,10 +262,12 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         // TODO add your handling code here:
         this.showUserManagerJDialog(this);
     }//GEN-LAST:event_btnUserManagerActionPerformed
-
+        
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        this.exit();
+        new LoginJDialog(this).setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_btnExitActionPerformed
 
     /**

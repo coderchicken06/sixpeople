@@ -8,28 +8,30 @@ import com.shop.dao.impl.UserDAOImpl;
 import com.shop.entity.User;
 import com.shop.util.XAuth;
 import com.shop.util.XDialog;
+import java.awt.Frame;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 /**
  *
  * @author Dung Si Ban Tron
  */
-public class LoginJDialog extends javax.swing.JDialog implements LoginController {
+public class LoginJDialog extends JFrame {
 
     /**
      * Creates new form WelcomeJDialog
      */
-    public LoginJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public LoginJDialog(Frame parent) {
+        super("");
         initComponents();
         setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
     }
-    @Override
+    
     public void open() {
         this.setLocationRelativeTo(null);
     }
 
-    @Override
+    
     public void login() {
     String username = txtName.getText();
     String password = txtPass.getText();
@@ -135,7 +137,7 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
 
     private void btnEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndActionPerformed
         // TODO add your handling code here:
-        this.exit();
+        System.exit(0);
     }//GEN-LAST:event_btnEndActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -176,14 +178,10 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                LoginJDialog dialog = new LoginJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                
+        LoginJDialog frame = new LoginJDialog(new javax.swing.JFrame()); // ✅ constructor mới
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // hoặc DISPOSE_ON_CLOSE
+        frame.setVisible(true);
             }
         });
     }

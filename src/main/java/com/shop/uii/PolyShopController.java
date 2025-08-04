@@ -42,7 +42,7 @@ public interface PolyShopController {
     }
 
     default void showWelcomeJDialog(JFrame frame) {
-        this.showJDialog(new LoginJDialog(frame, true));
+        new LoginJDialog(frame).setVisible(true);
     }
 
     default void showChangePasswordJDialog(JFrame frame) {

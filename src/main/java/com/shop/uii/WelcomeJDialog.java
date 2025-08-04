@@ -36,8 +36,8 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
                 }
                 WelcomeJDialog.this.dispose();
                 java.awt.EventQueue.invokeLater(() -> {
-                    LoginJDialog loginDialog = new LoginJDialog(new javax.swing.JFrame(), true);
-                    loginDialog.setVisible(true);
+                    LoginJDialog frame = new LoginJDialog(new javax.swing.JFrame()); 
+                    frame.setVisible(true);
                 });
             } catch (InterruptedException ex) {
                 System.exit(0);
