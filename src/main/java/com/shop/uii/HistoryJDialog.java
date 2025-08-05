@@ -14,8 +14,15 @@ import com.shop.entity.Bill;
 import com.shop.util.TimeRange;
 import com.shop.util.XAuth;
 import com.shop.util.XDate;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -30,6 +37,44 @@ public class HistoryJDialog extends JFrame {
         super("Lich su");
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/images/Shop_logo.png")).getImage());
+        getContentPane().setBackground(Color.WHITE);
+        
+
+// Label chữ đen
+jLabel2.setForeground(Color.BLACK);
+jLabel3.setForeground(Color.BLACK);
+
+// TextField nền trắng chữ đen
+txtBegin.setBackground(Color.WHITE);
+txtBegin.setForeground(Color.BLACK);
+txtBegin.setCaretColor(Color.BLACK);
+txtBegin.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+txtEnd.setBackground(Color.WHITE);
+txtEnd.setForeground(Color.BLACK);
+txtEnd.setCaretColor(Color.BLACK);
+txtEnd.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+// ComboBox trắng đen
+cboTimeRanges.setBackground(Color.WHITE);
+cboTimeRanges.setForeground(Color.BLACK);
+cboTimeRanges.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+// Nút trắng viền đen
+btnFilter.setBackground(Color.WHITE);
+btnFilter.setForeground(Color.BLACK);
+btnFilter.setFocusPainted(false);
+btnFilter.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+// Bảng: nền trắng, chữ đen
+tblBills.setBackground(Color.WHITE);
+tblBills.setForeground(Color.BLACK);
+tblBills.setGridColor(Color.LIGHT_GRAY);
+tblBills.setSelectionBackground(new Color(220, 220, 220)); // Khi chọn dòng
+tblBills.setSelectionForeground(Color.BLACK);
+
+
+
     }
 
     /**
@@ -51,6 +96,8 @@ public class HistoryJDialog extends JFrame {
         txtEnd = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
         cboTimeRanges = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lịch sử bán hàng của bạn");
@@ -62,6 +109,7 @@ public class HistoryJDialog extends JFrame {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
+        tblBills.setForeground(new java.awt.Color(0, 0, 0));
         tblBills.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -87,6 +135,7 @@ public class HistoryJDialog extends JFrame {
         });
         tblBills.setRowHeight(25);
         tblBills.setRowMargin(2);
+        tblBills.setSelectionBackground(new java.awt.Color(0, 0, 0));
         tblBills.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblBills.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblBills.setShowGrid(true);
@@ -99,18 +148,29 @@ public class HistoryJDialog extends JFrame {
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Từ ngày: ");
         jPanel3.add(jLabel1);
 
         txtBegin.setColumns(8);
+        txtBegin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBeginActionPerformed(evt);
+            }
+        });
         jPanel3.add(txtBegin);
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Đến ngày: ");
         jPanel3.add(jLabel2);
 
         txtEnd.setColumns(8);
         jPanel3.add(txtEnd);
 
+        btnFilter.setForeground(new java.awt.Color(0, 0, 0));
         btnFilter.setText("Lọc");
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +179,7 @@ public class HistoryJDialog extends JFrame {
         });
         jPanel3.add(btnFilter);
 
+        cboTimeRanges.setForeground(new java.awt.Color(0, 0, 0));
         cboTimeRanges.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hôm nay", "Tuần này", "Tháng này", "Quý này", "Năm nay" }));
         cboTimeRanges.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +188,12 @@ public class HistoryJDialog extends JFrame {
         });
         jPanel3.add(cboTimeRanges);
 
-        jPanel2.add(jPanel3, java.awt.BorderLayout.PAGE_START);
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Lịch sử bán hàng");
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/_2.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,14 +201,33 @@ public class HistoryJDialog extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -170,6 +255,10 @@ public class HistoryJDialog extends JFrame {
         // TODO add your handling code here:
         this.fillBills();
     }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void txtBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBeginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBeginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,6 +309,8 @@ public class HistoryJDialog extends JFrame {
     private javax.swing.JComboBox<String> cboTimeRanges;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
