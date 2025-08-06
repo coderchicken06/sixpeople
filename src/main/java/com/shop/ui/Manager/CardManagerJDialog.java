@@ -224,6 +224,9 @@ public class CardManagerJDialog extends JFrame {
             }
         });
 
+        tabs.setBackground(new java.awt.Color(0, 0, 0));
+        tabs.setForeground(new java.awt.Color(255, 255, 255));
+
         jPanel1.setLayout(new java.awt.BorderLayout(0, 5));
 
         tblCards.setModel(new javax.swing.table.DefaultTableModel(
@@ -267,6 +270,8 @@ public class CardManagerJDialog extends JFrame {
 
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 2, 2));
 
+        btnCheckAll.setBackground(new java.awt.Color(0, 0, 0));
+        btnCheckAll.setForeground(new java.awt.Color(255, 255, 255));
         btnCheckAll.setText("Chọn tất cả");
         btnCheckAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,6 +280,8 @@ public class CardManagerJDialog extends JFrame {
         });
         jPanel3.add(btnCheckAll);
 
+        btnUncheckAll.setBackground(new java.awt.Color(0, 0, 0));
+        btnUncheckAll.setForeground(new java.awt.Color(255, 255, 255));
         btnUncheckAll.setText("Bỏ chọn tất cả");
         btnUncheckAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,6 +290,8 @@ public class CardManagerJDialog extends JFrame {
         });
         jPanel3.add(btnUncheckAll);
 
+        btnDeleteCheckedItems.setBackground(new java.awt.Color(0, 0, 0));
+        btnDeleteCheckedItems.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteCheckedItems.setText("Xóa các mục chọn");
         btnDeleteCheckedItems.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

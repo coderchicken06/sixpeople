@@ -57,22 +57,24 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnRevenueManager" min="-2" pref="312" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnSales" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
-                              <Component id="btnHistory" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
-                              <Component id="btnChangePassword" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
-                              <Component id="btnExit" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
-                              <Component id="btnCardManager" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnUserManager" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnCategoryManager" alignment="0" pref="312" max="32767" attributes="0"/>
-                              <Component id="btnBillManager" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnDrinkManager" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnCardManager" min="-2" pref="312" max="-2" attributes="0"/>
+                      <Component id="btnBillManager" min="-2" pref="312" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnRevenueManager" min="-2" pref="312" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btnSales" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
+                                  <Component id="btnHistory" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
+                                  <Component id="btnChangePassword" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
+                                  <Component id="btnExit" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
+                                  <Component id="btnUserManager" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnCategoryManager" alignment="0" pref="312" max="32767" attributes="0"/>
+                                  <Component id="btnDrinkManager" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>

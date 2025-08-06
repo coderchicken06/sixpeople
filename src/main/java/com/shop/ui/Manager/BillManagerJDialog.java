@@ -320,6 +320,9 @@ public class BillManagerJDialog extends JFrame {
             }
         });
 
+        tabs.setBackground(new java.awt.Color(0, 0, 0));
+        tabs.setForeground(new java.awt.Color(255, 255, 255));
+
         jPanel1.setLayout(new java.awt.BorderLayout(0, 5));
 
         tblBills.setModel(new javax.swing.table.DefaultTableModel(
@@ -363,6 +366,8 @@ public class BillManagerJDialog extends JFrame {
 
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 2, 2));
 
+        btnCheckAll.setBackground(new java.awt.Color(0, 0, 0));
+        btnCheckAll.setForeground(new java.awt.Color(255, 255, 255));
         btnCheckAll.setText("Chọn tất cả");
         btnCheckAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,6 +376,8 @@ public class BillManagerJDialog extends JFrame {
         });
         jPanel3.add(btnCheckAll);
 
+        btnUncheckAll.setBackground(new java.awt.Color(0, 0, 0));
+        btnUncheckAll.setForeground(new java.awt.Color(255, 255, 255));
         btnUncheckAll.setText("Bỏ chọn tất cả");
         btnUncheckAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -379,6 +386,8 @@ public class BillManagerJDialog extends JFrame {
         });
         jPanel3.add(btnUncheckAll);
 
+        btnDeleteCheckedItems.setBackground(new java.awt.Color(0, 0, 0));
+        btnDeleteCheckedItems.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteCheckedItems.setText("Xóa các mục chọn");
         btnDeleteCheckedItems.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,6 +411,8 @@ public class BillManagerJDialog extends JFrame {
 
         jPanel7.setLayout(new java.awt.GridLayout(1, 0, 2, 2));
 
+        btnCreate.setBackground(new java.awt.Color(0, 0, 0));
+        btnCreate.setForeground(new java.awt.Color(255, 255, 255));
         btnCreate.setText("Tạo mới");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -410,6 +421,8 @@ public class BillManagerJDialog extends JFrame {
         });
         jPanel7.add(btnCreate);
 
+        btnUpdate.setBackground(new java.awt.Color(0, 0, 0));
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Cập nhật");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,6 +431,8 @@ public class BillManagerJDialog extends JFrame {
         });
         jPanel7.add(btnUpdate);
 
+        btnDelete.setBackground(new java.awt.Color(0, 0, 0));
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Xóa");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -426,6 +441,8 @@ public class BillManagerJDialog extends JFrame {
         });
         jPanel7.add(btnDelete);
 
+        btnClear.setBackground(new java.awt.Color(0, 0, 0));
+        btnClear.setForeground(new java.awt.Color(255, 255, 255));
         btnClear.setText("Nhập mới");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -438,6 +455,8 @@ public class BillManagerJDialog extends JFrame {
 
         jPanel8.setLayout(new java.awt.GridLayout(1, 0, 2, 2));
 
+        btnMoveFirst.setBackground(new java.awt.Color(0, 0, 0));
+        btnMoveFirst.setForeground(new java.awt.Color(255, 255, 255));
         btnMoveFirst.setText("|<");
         btnMoveFirst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -446,6 +465,8 @@ public class BillManagerJDialog extends JFrame {
         });
         jPanel8.add(btnMoveFirst);
 
+        btnMovePrevious.setBackground(new java.awt.Color(0, 0, 0));
+        btnMovePrevious.setForeground(new java.awt.Color(255, 255, 255));
         btnMovePrevious.setText("<<");
         btnMovePrevious.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,6 +475,8 @@ public class BillManagerJDialog extends JFrame {
         });
         jPanel8.add(btnMovePrevious);
 
+        btnMoveNext.setBackground(new java.awt.Color(0, 0, 0));
+        btnMoveNext.setForeground(new java.awt.Color(255, 255, 255));
         btnMoveNext.setText(">>");
         btnMoveNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -462,6 +485,8 @@ public class BillManagerJDialog extends JFrame {
         });
         jPanel8.add(btnMoveNext);
 
+        btnMoveLast.setBackground(new java.awt.Color(0, 0, 0));
+        btnMoveLast.setForeground(new java.awt.Color(255, 255, 255));
         btnMoveLast.setText(">|");
         btnMoveLast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
