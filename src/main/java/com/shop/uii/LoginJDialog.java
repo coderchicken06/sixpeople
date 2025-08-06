@@ -135,7 +135,7 @@ public class LoginJDialog extends JFrame {
                         .addComponent(btnLogin)
                         .addGap(18, 18, 18)
                         .addComponent(btnEnd)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
