@@ -164,7 +164,7 @@ private JButton createButton(Card card) {
     btnCard.setText(String.format("Card #%d", card.getId()));
     btnCard.setPreferredSize(new Dimension(0, 80));
     btnCard.setEnabled(card.getStatus() == 0);
-    btnCard.setBackground(btnCard.isEnabled() ? Color.GREEN : Color.GRAY);
+    btnCard.setBackground(btnCard.isEnabled() ? Color.PINK : Color.GREEN);
     btnCard.setActionCommand(String.valueOf(card.getId()));
 
     btnCard.addActionListener((ActionEvent e) -> {

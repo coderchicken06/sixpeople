@@ -16,10 +16,10 @@ public class XJdbc {
     //@return Kết nối đã sẵn sàng
     public static Connection openConnection() {
         var driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        var dburl = "jdbc:sqlserver://ducthanh;database=polycafe_3;encrypt=true;trustServerCertificate=true;";
+        var dburl = "jdbc:sqlserver://LAPTOP-OA2TM3HN;database=polycafe_3;encrypt=true;trustServerCertificate=true;";
 
         var username = "sa";
-        var password = "17052005";
+        var password = "310506";
         try {
             if (!XJdbc.isReady()) {
                 Class.forName(driver);

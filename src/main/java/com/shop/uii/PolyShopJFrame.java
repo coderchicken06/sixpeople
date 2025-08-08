@@ -55,7 +55,8 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         btnRevenueManager = new javax.swing.JButton();
         panel1 = new java.awt.Panel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        panel2 = new java.awt.Panel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 255));
@@ -66,6 +67,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         btnHistory.setBackground(new java.awt.Color(102, 102, 102));
         btnHistory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnHistory.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/list.png"))); // NOI18N
         btnHistory.setText("LỊCH SỬ");
         btnHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +78,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         btnUserManager.setBackground(new java.awt.Color(102, 102, 102));
         btnUserManager.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnUserManager.setForeground(new java.awt.Color(255, 255, 255));
+        btnUserManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon Application/User.png"))); // NOI18N
         btnUserManager.setText("NHÂN VIÊN");
         btnUserManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +89,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         btnChangePassword.setBackground(new java.awt.Color(102, 102, 102));
         btnChangePassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnChangePassword.setForeground(new java.awt.Color(255, 255, 255));
+        btnChangePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon Application/Edit.png"))); // NOI18N
         btnChangePassword.setText("ĐỔI MẬT KHẨU");
         btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +100,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         btnExit.setBackground(new java.awt.Color(102, 102, 102));
         btnExit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon Application/Exit.png"))); // NOI18N
         btnExit.setText("ĐĂNG XUẤT ");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +186,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         btnSales.setBackground(new java.awt.Color(102, 102, 102));
         btnSales.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSales.setForeground(new java.awt.Color(255, 255, 255));
-        btnSales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/up.png"))); // NOI18N
+        btnSales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon Application/List.png"))); // NOI18N
         btnSales.setText("HÓA ĐƠN");
         btnSales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +198,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         btnDrinkManager.setBackground(new java.awt.Color(102, 102, 102));
         btnDrinkManager.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnDrinkManager.setForeground(new java.awt.Color(255, 255, 255));
+        btnDrinkManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon Application/Price list.png"))); // NOI18N
         btnDrinkManager.setText("KHUYẾN MÃI");
         btnDrinkManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,6 +210,7 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
         btnRevenueManager.setBackground(new java.awt.Color(102, 102, 102));
         btnRevenueManager.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRevenueManager.setForeground(new java.awt.Color(255, 255, 255));
+        btnRevenueManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon Application/Statistics.png"))); // NOI18N
         btnRevenueManager.setText("DOANH THU");
         btnRevenueManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,9 +244,23 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
 
         getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 100));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shoptongwhite.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 660, 390));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shoptongwhite.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+
+        javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
+        panel2.setLayout(panel2Layout);
+        panel2Layout.setHorizontalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel2Layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 654, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panel2Layout.setVerticalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 390, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(panel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 650, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -598,8 +619,9 @@ public final class PolyShopJFrame extends javax.swing.JFrame implements PolyShop
     private javax.swing.JButton btnSales;
     private javax.swing.JButton btnUserManager;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private java.awt.Panel panel1;
+    private java.awt.Panel panel2;
     // End of variables declaration//GEN-END:variables
 }
