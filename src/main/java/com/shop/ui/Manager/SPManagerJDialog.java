@@ -297,6 +297,8 @@ public class SPManagerJDialog extends JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.BorderLayout(5, 5));
 
         tblDrinks.setModel(new javax.swing.table.DefaultTableModel(
@@ -404,6 +406,8 @@ public class SPManagerJDialog extends JFrame {
 
         tabs.addTab("DANH SÁCH", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         jPanel4.setLayout(new java.awt.BorderLayout(0, 5));

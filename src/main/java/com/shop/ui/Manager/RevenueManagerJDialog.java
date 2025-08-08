@@ -62,6 +62,8 @@ public class RevenueManagerJDialog extends JFrame {
         jPanel13 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblByUser = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Thống kê doanh thu");
@@ -71,21 +73,37 @@ public class RevenueManagerJDialog extends JFrame {
             }
         });
 
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setForeground(new java.awt.Color(255, 255, 255));
         jPanel10.setLayout(new java.awt.BorderLayout());
 
+        jPanel11.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Từ ngày: ");
+        jLabel1.setOpaque(true);
         jPanel11.add(jLabel1);
 
         txtBegin.setColumns(8);
         jPanel11.add(txtBegin);
 
+        jLabel2.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Đến ngày: ");
+        jLabel2.setOpaque(true);
         jPanel11.add(jLabel2);
 
         txtEnd.setColumns(8);
+        txtEnd.setOpaque(true);
         jPanel11.add(txtEnd);
 
+        btnFilter.setBackground(new java.awt.Color(0, 153, 153));
+        btnFilter.setForeground(new java.awt.Color(255, 255, 255));
         btnFilter.setText("Lọc");
+        btnFilter.setOpaque(true);
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
@@ -93,7 +111,11 @@ public class RevenueManagerJDialog extends JFrame {
         });
         jPanel11.add(btnFilter);
 
+        cboTimeRanges.setBackground(new java.awt.Color(0, 153, 153));
+        cboTimeRanges.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cboTimeRanges.setForeground(new java.awt.Color(255, 255, 255));
         cboTimeRanges.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hôm nay", "Tuần này", "Tháng này", "Quý này", "Năm nay" }));
+        cboTimeRanges.setOpaque(true);
         cboTimeRanges.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboTimeRangesActionPerformed(evt);
@@ -109,8 +131,10 @@ public class RevenueManagerJDialog extends JFrame {
             }
         });
 
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setLayout(new java.awt.BorderLayout());
 
+        tblByCategory.setBackground(new java.awt.Color(153, 153, 153));
         tblByCategory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -138,8 +162,10 @@ public class RevenueManagerJDialog extends JFrame {
 
         tabs.addTab("Doanh thu từng loại", jPanel12);
 
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setLayout(new java.awt.BorderLayout());
 
+        tblByUser.setBackground(new java.awt.Color(153, 153, 153));
         tblByUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -169,6 +195,13 @@ public class RevenueManagerJDialog extends JFrame {
 
         jPanel10.add(tabs, java.awt.BorderLayout.CENTER);
 
+        jLabel4.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/_2.png"))); // NOI18N
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel3.setText("Doanh Thu Bán Hàng");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,12 +210,23 @@ public class RevenueManagerJDialog extends JFrame {
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel4)
+                .addGap(67, 67, 67)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel4))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -282,6 +326,8 @@ public class RevenueManagerJDialog extends JFrame {
     private javax.swing.JComboBox<String> cboTimeRanges;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
